@@ -2315,7 +2315,48 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 /* ============================================================
    CONTACT FORM
 ============================================================ */
-function handleSubmit() { document.getElementById('form-ok').style.display = 'block'; }
+async function handleSubmit() {
+  if (!window._supabase) {
+    alert('Connection unavailable. Please email enterprise@hifiveai.com directly.');
+    return;
+  }
+
+  const inputs = document.querySelectorAll('.fi');
+  const selects = document.querySelectorAll('.fs');
+  const textarea = document.querySelector('.ft');
+
+  const name = inputs[0]?.value || '';
+  const company = inputs[1]?.value || '';
+  const email = inputs[2]?.value || '';
+
+  const hiring_requirement = selects[0]?.value || '';
+  const team_size = selects[1]?.value || '';
+  const hiring_volume = selects[2]?.value || '';
+  const timeline = selects[3]?.value || '';
+
+  const additional_context = textarea?.value || '';
+
+  const { error } = await window._supabase
+    .from('Leads')
+    .insert([{
+      name,
+      company,
+      email,
+      hiring_requirement,
+      team_size,
+      hiring_volume,
+      timeline,
+      additional_context
+    }]);
+
+  if (error) {
+    console.error(error);
+    alert('Error saving enquiry');
+    return;
+  }
+
+  document.getElementById('form-ok').style.display = 'block';
+}
 
 /* ============================================================
    ATS ENGINE — REAL FILE PARSING + RULE-BASED SCORING
@@ -2818,6 +2859,18 @@ setInterval(reanimateAIStream, 8000);
   `;
   document.head.appendChild(style);
 })();
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://ortlzgqbhhrucyyvmgnp.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ydGx6Z3FiaGhydWN5eXZtZ25wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5MzQ5OTksImV4cCI6MjA5NjUxMDk5OX0.blL-uarTumqcbFMA3L56_zKrojRxJVj6O9VJ_nUOc1g"; // ← paste eyJ... key from Supabase dashboard
+
+try {
+  window._supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} catch(e) {
+  console.warn('Supabase init failed:', e);
+}
 </script>
 </body>
 </html>
