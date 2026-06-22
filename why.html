@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Why HiFive AI — Built Different</title>
+<meta name="description" content="Why HiFive AI is unlike any fractional HR provider in UAE, UK, or Singapore. Senior team. AI-native delivery. Flat pricing. Results in 48 hours."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+
+/* PAGE HERO */
+.page-hero {
+  padding: calc(var(--nav-h) + 80px) var(--px) 80px;
+  background: var(--ink); overflow: hidden; position: relative;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(196,146,42,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
+.page-h1 {
+  font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.03;
+  color: var(--white); margin-bottom: 18px;
+}
+.page-h1 em { color: var(--gold); font-style: italic; }
+.page-sub {
+  font-family: var(--font-body); font-size: 18px;
+  color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 560px;
+}
+.hero-cred-strip {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px;
+}
+.hero-cred {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 20px; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 100px;
+  font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.75);
+  transition: all 0.2s;
+}
+.hero-cred:hover { background: rgba(255,255,255,0.10); color: var(--white); }
+.hero-cred img {
+  width: 18px; height: 18px; border-radius: 3px; object-fit: contain;
+  filter: brightness(0) invert(1); opacity: 0.7;
+}
+
+/* FOUNDER SECTION */
+.founder-section { padding: 96px var(--px); }
+.founder-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+.founder-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 36px; position: sticky; top: calc(var(--nav-h) + 24px);
+}
+.founder-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--ink); border: 3px solid var(--border-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; margin-bottom: 20px;
+}
+.founder-name { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
+.founder-title { font-family: var(--font-body); font-size: 13px; color: var(--muted); margin-bottom: 20px; margin-top: 4px; }
+.founder-bio { font-family: var(--font-body); font-size: 15px; color: var(--mid); line-height: 1.75; margin-bottom: 24px; }
+.founder-logos { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.cred-logo {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 14px; background: var(--white);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 12.5px; font-weight: 600; color: var(--ink);
+}
+.cred-logo img {
+  width: 16px; height: 16px; border-radius: 3px; object-fit: contain;
+}
+
+/* Why pillars */
+.why-pillars { display: flex; flex-direction: column; gap: 0; }
+.pillar {
+  padding: 32px 0; border-bottom: 1px solid var(--border);
+}
+.pillar:last-child { border-bottom: none; }
+.pillar-eyebrow {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 10px; display: block;
+}
+.pillar-title {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800;
+  color: var(--ink); letter-spacing: -0.025em; margin-bottom: 10px;
+  line-height: 1.2;
+}
+.pillar-body { font-family: var(--font-body); font-size: 16px; color: var(--mid); line-height: 1.75; }
+
+@media (max-width: 860px) { .founder-inner { grid-template-columns: 1fr; } .founder-card { position: static; } }
+
+/* COMPETITION */
+.competition-section { background: var(--cream); padding: 96px var(--px); }
+.competition-inner { max-width: var(--max-w); margin: 0 auto; }
+.comp-table {
+  width: 100%; border-collapse: collapse; margin-top: 48px;
+  border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.comp-table th {
+  background: var(--ink); color: rgba(255,255,255,0.5);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 16px 20px; text-align: left;
+}
+.comp-table th:first-child { color: rgba(255,255,255,0.4); }
+.comp-table td {
+  padding: 18px 20px; border-bottom: 1px solid var(--border);
+  font-family: var(--font-body); font-size: 14px; color: var(--mid);
+  background: var(--white);
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table tr.highlight td { background: var(--cream-2); }
+.comp-table td:first-child { font-weight: 600; color: var(--ink); }
+.td-good { color: #16a34a !important; font-weight: 600 !important; }
+.td-bad { color: var(--red) !important; }
+.td-na { color: var(--muted) !important; font-style: italic; }
+
+/* SOCIAL PROOF */
+.proof-section { padding: 96px var(--px); }
+.proof-inner { max-width: var(--max-w); margin: 0 auto; }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 48px; }
+.proof-card {
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px 24px; text-align: center;
+}
+.proof-num {
+  font-family: var(--font-display); font-size: 42px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 8px;
+}
+.proof-num span { color: var(--gold); }
+.proof-label { font-family: var(--font-body); font-size: 13px; color: var(--muted); line-height: 1.45; }
+@media (max-width: 860px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
+
+/* FAQ SECTION */
+.faq-section { background: var(--ink); padding: 96px var(--px); }
+.faq-inner { max-width: 800px; margin: 0 auto; }
+.faq-h2 {
+  font-family: var(--font-display); font-size: clamp(32px, 4vw, 50px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+  color: var(--white); margin-bottom: 16px;
+}
+.faq-sub { font-family: var(--font-body); font-size: 17px; color: rgba(255,255,255,0.5); margin-bottom: 48px; line-height: 1.7; }
+
+.faq-item {
+  border-bottom: 1px solid rgba(255,255,255,0.10); overflow: hidden;
+}
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; cursor: pointer;
+  font-family: var(--font-body); font-size: 16px; font-weight: 600; color: var(--white);
+  background: none; border: none; width: 100%; text-align: left; gap: 16px;
+}
+.faq-q svg { flex-shrink: 0; transition: transform 0.25s; color: rgba(255,255,255,0.35); }
+.faq-item.open .faq-q svg { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.faq-a-inner {
+  padding: 0 0 24px;
+  font-family: var(--font-body); font-size: 15px;
+  color: rgba(255,255,255,0.5); line-height: 1.75;
+}
+</style>
+
+<style>
+/* ── Page entrance fade ── */
+body { animation: pageFadeIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+@keyframes pageFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+</style>
+<script>
+/* ── Page exit fade on internal links ── */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || a.target === '_blank') return;
+  e.preventDefault();
+  document.body.style.transition = 'opacity 0.22s';
+  document.body.style.opacity = '0';
+  setTimeout(() => { window.location.href = href; }, 230);
+});
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow" style="color:var(--gold);">Why HiFive AI</span>
+    <h1 class="page-h1 reveal">Senior HR expertise.<br>AI-native delivery.<br><em class="gold-underline reveal">Built for companies like yours.</em></h1>
+    <p class="page-sub reveal d1">Most fractional HR providers are solo generalists with a spreadsheet and a CIPD certificate. HiFive AI is something different — a team combining deep strategy and compliance experience with AI systems built specifically for HR delivery.</p>
+    <div class="hero-cred-strip stagger reveal d2">
+      <div class="hero-cred">
+        <img src="https://logo.clearbit.com/jpmorgan.com" alt="JPMorgan" onerror="this.style.display='none'"/>
+        Global financial institutions
+      </div>
+      <div class="hero-cred">
+        <img src="https://logo.clearbit.com/visa.com" alt="Visa" onerror="this.style.display='none'"/>
+        Big 4 strategy background
+      </div>
+      <div class="hero-cred">
+        <img src="https://logo.clearbit.com/mastercard.com" alt="Mastercard" onerror="this.style.display='none'"/>
+        M&amp;A &amp; commercial due diligence
+      </div>
+      <div class="hero-cred">
+        <img src="https://logo.clearbit.com/openai.com" alt="AI" onerror="this.style.display='none'"/>
+        AI-native delivery pipeline
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES US DIFFERENT -->
+<section class="founder-section">
+  <div class="founder-inner section">
+
+    <!-- Left: Team card — no names, no solo signals -->
+    <div class="founder-card reveal-left">
+      <div class="founder-avatar">🏢</div>
+      <div class="founder-name">Built on Big 4 fundamentals</div>
+      <div class="founder-title">Strategy &amp; compliance expertise · AI-accelerated delivery</div>
+      <p class="founder-bio">
+        HiFive AI was founded by operators with Big 4 consulting experience — advising global financial institutions on strategy, M&amp;A, and commercial due diligence. That rigour is now applied to HR, the one function most SMBs treat as an afterthought.
+      </p>
+      <p class="founder-bio" style="margin-bottom:0;">
+        We combine that analytical foundation with an AI-native delivery pipeline built specifically for HR work — contracts, handbooks, compliance frameworks, and hiring processes that used to take weeks now take hours.
+      </p>
+      <div class="founder-logos" style="margin-top:24px;">
+        <div class="cred-logo">
+          <img src="https://logo.clearbit.com/jpmorgan.com" alt="JPMorgan" onerror="this.style.display='none'"/>
+          Global Banks
+        </div>
+        <div class="cred-logo">
+          <img src="https://logo.clearbit.com/visa.com" alt="Visa" onerror="this.style.display='none'"/>
+          Fintech &amp; Payments
+        </div>
+        <div class="cred-logo" style="background:var(--ink);color:var(--white);border-color:var(--ink);">
+          AI&#x2011;native
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Why pillars -->
+    <div class="why-pillars reveal-right">
+      <div class="pillar">
+        <span class="pillar-eyebrow">Differentiator 01</span>
+        <h3 class="pillar-title">Strategy-grade thinking applied to people operations</h3>
+        <p class="pillar-body">Most fractional HR providers think tactically — a contract here, a handbook there. Our team brings Big 4 strategy and commercial due diligence experience to HR. We identify the systemic risks, structure the right frameworks, and build the documentation that holds up under scrutiny — not just passes a quick check.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-eyebrow">Differentiator 02</span>
+        <h3 class="pillar-title">AI-native delivery — 10× faster, same senior quality</h3>
+        <p class="pillar-body">We built proprietary AI workflows specifically for HR delivery. An employee handbook that takes a traditional consultant 2–3 weeks takes us 48 hours. Compliance audit: same day. Employment contracts: within hours of your hire decision. The AI handles drafting and research. Our team handles review, judgement, and sign-off. You get both.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-eyebrow">Differentiator 03</span>
+        <h3 class="pillar-title">Flat monthly retainer — a fraction of the cost of a hire</h3>
+        <p class="pillar-body">A UK HR Manager costs £66,000–£96,000 per year in base salary alone — before NI, benefits, and recruitment fees. Our Growth retainer is $2,200/month. You get the same outcomes: hiring support, onboarding, compliance, documentation, and strategic HR advisory. No benefits package. No notice period. No recruitment fee.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-eyebrow">Differentiator 04</span>
+        <h3 class="pillar-title">48-hour SLA on every deliverable — without exception</h3>
+        <p class="pillar-body">HR questions rarely wait. A termination, a new hire, a compliance gap that surfaced today — these need answers fast. We commit to 48-hour turnaround on contracts, audits, handbooks, and hiring shortlists. Not "we'll get back to you" — a written deliverable in 48 hours, every time.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-eyebrow">Differentiator 05</span>
+        <h3 class="pillar-title">Three jurisdictions. One retainer. No extra fees.</h3>
+        <p class="pillar-body">Most HR providers know one market. We operate across UAE (Federal Decree-Law 33), UK (Employment Rights Act), and Singapore (MOM/Employment Act) — with the same depth in each. If you're scaling across borders, you need one partner who covers all of them, not three separate consultants billing separately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITION TABLE -->
+<section class="competition-section">
+  <div class="competition-inner">
+    <span class="eyebrow reveal">The competitive reality</span>
+    <h2 class="services-h2 reveal d1" style="font-family:var(--font-display);font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">Senior outcomes. <span style="color:var(--gold);">Fractional cost.</span></h2>
+    <p style="font-family:var(--font-body);font-size:17px;color:var(--mid);line-height:1.75;max-width:560px;" class="reveal d2">Local HR consultants charge £400–600/hour and take weeks to deliver. A full-time HR Manager in London costs £5,500–£8,000/month before benefits. You can have a better outcome, faster, for a fraction of the cost.</p>
+    <table class="comp-table reveal d1">
+      <thead>
+        <tr>
+          <th>Alternative</th>
+          <th>Monthly cost</th>
+          <th>Delivery speed</th>
+          <th>AI-powered</th>
+          <th>Multi-jurisdiction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>HiFive AI (Growth)</td>
+          <td class="td-good">$2,200/month</td>
+          <td class="td-good">48 hours</td>
+          <td class="td-good">Yes — native</td>
+          <td class="td-good">UAE · UK · SG</td>
+        </tr>
+        <tr>
+          <td>Full-time HR Manager (UK)</td>
+          <td class="td-bad">£5,500 – £8,000</td>
+          <td>Days to weeks</td>
+          <td class="td-na">No</td>
+          <td class="td-na">One market</td>
+        </tr>
+        <tr>
+          <td>Local HR Consultant (UK)</td>
+          <td class="td-bad">£400–600/hr billed</td>
+          <td>Weeks</td>
+          <td class="td-na">No</td>
+          <td class="td-na">One market</td>
+        </tr>
+        <tr>
+          <td>HR Software (BambooHR, HiBob)</td>
+          <td>$500 – $2,000</td>
+          <td class="td-bad">You do the work</td>
+          <td class="td-na">Limited</td>
+          <td class="td-na">Tools only</td>
+        </tr>
+        <tr>
+          <td>General business consultant</td>
+          <td class="td-bad">Project rate only</td>
+          <td class="td-na">Weeks</td>
+          <td class="td-na">No</td>
+          <td class="td-na">One market</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PROOF NUMBERS -->
+<section class="proof-section">
+  <div class="proof-inner">
+    <span class="eyebrow reveal">By the numbers</span>
+    <h2 class="reveal d1" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">The math is simple. The outcomes aren't.</h2>
+    <div class="proof-grid stagger">
+      <div class="proof-card reveal">
+        <div class="proof-num">48<span>hr</span></div>
+        <div class="proof-label">Delivery on most HR deliverables — handbooks, audits, contracts</div>
+      </div>
+      <div class="proof-card reveal d1">
+        <div class="proof-num">$0</div>
+        <div class="proof-label">Cost to find out your top 5 HR compliance risks — free audit</div>
+      </div>
+      <div class="proof-card reveal d2">
+        <div class="proof-num">3</div>
+        <div class="proof-label">Jurisdictions covered — UAE, UK, Singapore — in one retainer</div>
+      </div>
+      <div class="proof-card reveal d3">
+        <div class="proof-num">10<span>x</span></div>
+        <div class="proof-label">Faster delivery than a traditional HR consultant or in-house hire</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <span class="eyebrow" style="color:var(--gold);">Common questions</span>
+    <h2 class="faq-h2 reveal">We named every concern.<br>Here's our answer.</h2>
+    <p class="faq-sub reveal d1">Transparency builds more trust than polished spin. Here are the questions we get asked most — answered directly.</p>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How do you maintain quality without a large in-house team?
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Our model is built for quality at pace — not volume. Every deliverable goes through a senior review before it leaves us. Our AI pipeline handles first-draft generation and research; our team applies judgement, jurisdiction knowledge, and strategic context on top. We also cap the number of active retainer clients so every company gets the attention it deserves.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What HR qualifications does your team hold?
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Our team brings Big 4 consulting experience in strategy, commercial due diligence, and M&amp;A — applied to HR. That analytical foundation produces better policy frameworks and more defensible compliance documentation than most generalist HR certifications. For jurisdiction-specific legal matters, we work alongside qualified employment lawyers. You get strategic HR thinking and legal referral when it's needed.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Can AI really produce compliant employment contracts?
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">AI produces an excellent jurisdiction-aware draft — and our team reviews and adapts every document for your specific situation, risk profile, and employment relationship. The same way a solicitor uses precedents and templates, then applies judgement. AI handles drafting; our team handles review and sign-off. For contested situations or tribunal risk, we connect you with employment lawyers — that's not what you're paying us for.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What if we have a complex disciplinary or termination situation?
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">We handle standard disciplinary processes, performance management, and most terminations within the retainer. For cases with material legal risk — contested terminations, potential tribunal claims — we advise on process and connect you with employment law specialists. We will never let you proceed without proper legal cover when the situation calls for it.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What markets do you cover?
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Primary markets: UAE, UK, and Singapore — where we have deep employment law knowledge and active client focus. Secondary markets (advisory and documentation): India, Australia, and broader Southeast Asia. For EOR arrangements in other markets, we coordinate with Deel or Remote.com who provide the local compliance layer.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How quickly can you start?
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Immediately. Once we complete the free HR audit and you confirm the retainer, we begin the systems review and documentation build within 24 hours. Most clients have a fully operational HR function live within two weeks of the kickoff call. There is no onboarding delay, no implementation project, and no migration required.</div></div>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+buildNav('why');
+buildFooter();
+
+/* ── Scroll progress bar ── */
+(function(){
+  const b = document.createElement('div');
+  b.id = 'scroll-bar';
+  document.body.prepend(b);
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    b.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const body = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+</script>
+</body>
+</html>

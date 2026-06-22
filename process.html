@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How It Works — HiFive AI</title>
+<meta name="description" content="Six steps to a fully operational HR function in two weeks. No migration. No new software. Built inside your existing tools."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+
+/* HERO */
+.page-hero {
+  padding: calc(var(--nav-h) + 80px) var(--px) 80px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.page-hero-inner { max-width: 700px; margin: 0 auto; }
+.page-h1 {
+  font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 68px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.04;
+  color: var(--ink); margin-bottom: 18px;
+}
+.page-h1 em { font-style: italic; color: var(--gold); }
+.page-sub {
+  font-family: var(--font-body); font-size: 18px; color: var(--mid);
+  line-height: 1.75;
+}
+.timeline-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 18px; background: var(--gold-light);
+  border: 1px solid rgba(196,146,42,0.3); border-radius: 100px;
+  font-family: var(--font-body); font-size: 13px; color: var(--gold);
+  font-weight: 600; margin-bottom: 32px;
+}
+
+/* TIMELINE */
+.timeline-section { padding: 80px var(--px) 100px; }
+.timeline-inner { max-width: 880px; margin: 0 auto; }
+
+.timeline-step {
+  display: grid; grid-template-columns: 72px 1fr; gap: 0;
+  position: relative;
+}
+.timeline-step:not(:last-child)::before {
+  content: ''; position: absolute;
+  left: 35px; top: 72px; bottom: -32px; width: 2px;
+  background: linear-gradient(to bottom, var(--border) 0%, transparent 100%);
+}
+.timeline-step + .timeline-step { margin-top: 32px; }
+
+.step-marker {
+  width: 72px; display: flex; flex-direction: column; align-items: center; padding-top: 8px; flex-shrink: 0;
+}
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--ink); border: 3px solid var(--white);
+  box-shadow: 0 0 0 1px var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--white);
+  flex-shrink: 0; position: relative; z-index: 1;
+  transition: background 0.3s, transform 0.3s;
+}
+.timeline-step:hover .step-num { background: var(--gold); transform: scale(1.1); }
+
+.step-body {
+  padding: 6px 0 40px 24px;
+}
+.step-tag {
+  display: inline-block; margin-bottom: 10px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  background: var(--gold-light); border-radius: 4px; padding: 3px 8px;
+}
+.step-title {
+  font-family: var(--font-display); font-size: 24px; font-weight: 800;
+  color: var(--ink); letter-spacing: -0.025em; margin-bottom: 10px; line-height: 1.2;
+}
+.step-body-text {
+  font-family: var(--font-body); font-size: 16px; color: var(--mid); line-height: 1.78; margin-bottom: 20px;
+}
+.step-deliverable {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 14px; background: var(--cream);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font-body); font-size: 12.5px; color: var(--mid);
+}
+.step-deliverable strong { color: var(--ink); font-weight: 600; }
+
+/* TOOLS STRIP */
+.tools-section { background: var(--cream); padding: 72px var(--px); }
+.tools-inner { max-width: var(--max-w); margin: 0 auto; }
+.tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 48px; }
+.tool-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 20px 18px;
+  display: flex; align-items: center; gap: 12px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.tool-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+.tool-logo {
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  background: var(--cream); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.tool-logo img { width: 22px; height: 22px; object-fit: contain; border-radius: 3px; }
+.tool-name { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.tool-type { font-family: var(--font-body); font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+@media (max-width: 860px) { .tools-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .tools-grid { grid-template-columns: 1fr; } }
+
+/* CTA */
+.cta-section { padding: 96px var(--px); background: var(--ink); text-align: center; }
+.cta-inner { max-width: 700px; margin: 0 auto; }
+.cta-h2 {
+  font-family: var(--font-display); font-size: clamp(36px, 5vw, 58px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.05;
+  color: var(--white); margin-bottom: 18px;
+}
+.cta-h2 em { color: var(--gold); font-style: italic; }
+.cta-sub { font-family: var(--font-body); font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 40px; }
+</style>
+
+<style>
+/* ── Page entrance fade ── */
+body { animation: pageFadeIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+@keyframes pageFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+</style>
+<script>
+/* ── Page exit fade on internal links ── */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || a.target === '_blank') return;
+  e.preventDefault();
+  document.body.style.transition = 'opacity 0.22s';
+  document.body.style.opacity = '0';
+  setTimeout(() => { window.location.href = href; }, 230);
+});
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="timeline-badge reveal">⚡ Up and running in 2 weeks</div>
+    <span class="eyebrow reveal">How we work</span>
+    <h1 class="page-h1 reveal d1">Six steps to a fully operational HR function.<br><em class="gold-underline reveal">No migration.</em></h1>
+    <p class="page-sub reveal d2">No lengthy implementation. No new software to learn. We work inside your existing tools and systems — and you have a fully operational HR function within two weeks.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-inner">
+
+    <div class="timeline-step reveal">
+      <div class="step-marker">
+        <div class="step-num">1</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Week 1, Day 1</span>
+        <h2 class="step-title">Discovery Call</h2>
+        <p class="step-body-text">A focused 45-minute conversation about your current state — team size, tools, pain points, open roles, and goals. We ask the 20 questions that reveal what's working and what's broken. No pitch deck. No templates. Just a genuine assessment of your people operations.</p>
+        <div class="step-deliverable">
+          <strong>Deliverable:</strong> Written summary of current state and top 5 priority gaps · 24 hours
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-step reveal d1">
+      <div class="step-marker">
+        <div class="step-num">2</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Week 1, Day 2–3</span>
+        <h2 class="step-title">HR Systems Audit</h2>
+        <p class="step-body-text">We review your existing HR stack — whatever tools you use, however documented your processes are. We identify gaps, compliance risks, and quick wins. You get a clear written audit report with a priority-ordered remediation plan within 48 hours. This alone is worth the engagement.</p>
+        <div class="step-deliverable">
+          <strong>Deliverable:</strong> Written compliance audit report with prioritised risk register · 48 hours
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-step reveal d2">
+      <div class="step-marker">
+        <div class="step-num">3</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Week 1–2</span>
+        <h2 class="step-title">Process & Policy Design</h2>
+        <p class="step-body-text">We build the HR infrastructure your company actually needs — not a generic template. Employee handbook tailored to your jurisdiction and culture. Employment contract library. Core policy suite (leave, remote work, expenses, code of conduct, grievance). Every document built for your specific situation.</p>
+        <div class="step-deliverable">
+          <strong>Deliverable:</strong> Complete policy and documentation library · Branded PDF · Ready to deploy
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-step reveal">
+      <div class="step-marker">
+        <div class="step-num">4</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Week 2</span>
+        <h2 class="step-title">System Integration</h2>
+        <p class="step-body-text">We configure everything inside your existing tools — HR platform, Notion, Google Workspace, Slack, or whatever your team already uses. No migration projects. No learning curve. Your team continues in familiar systems; they just work significantly better. We also set up reporting dashboards and compliance tracking.</p>
+        <div class="step-deliverable">
+          <strong>Deliverable:</strong> Live HR infrastructure in your existing tools · Reporting dashboards configured
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-step reveal d1">
+      <div class="step-marker">
+        <div class="step-num">5</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">End of Week 2</span>
+        <h2 class="step-title">Go Live</h2>
+        <p class="step-body-text">Your HR function is operational. We brief your leadership team on the new processes, provide manager guides, and activate the Slack or WhatsApp support channel. From this point, you have a fully functional HR department — without hiring one. The first monthly dashboard arrives 30 days later.</p>
+        <div class="step-deliverable">
+          <strong>Deliverable:</strong> Go-live briefing · Manager guides · Support channel activated · Month 1 plan
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-step reveal d2">
+      <div class="step-marker">
+        <div class="step-num">6</div>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Month 1 onwards</span>
+        <h2 class="step-title">Ongoing Operations</h2>
+        <p class="step-body-text">We run your HR function on retainer — handling hiring requests, onboarding coordination, compliance questions, documentation updates, and strategic people ops. Monthly dashboard delivered automatically. Quarterly strategic review included. Direct Slack or WhatsApp access for any question that can't wait for a meeting.</p>
+        <div class="step-deliverable">
+          <strong>Ongoing:</strong> Monthly people dashboard · Hiring support · Compliance monitoring · Slack/WhatsApp access
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section">
+  <div class="tools-inner">
+    <span class="eyebrow reveal">What we work inside</span>
+    <h2 class="reveal d1" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">No new tools. No migrations. Just better outcomes.</h2>
+    <p class="reveal d2" style="font-family:var(--font-body);font-size:17px;color:var(--mid);line-height:1.75;max-width:520px;">We configure and operate inside whatever HR stack you already have. If you have nothing yet, we'll recommend the simplest setup that works for your size and budget.</p>
+    <div class="tools-grid stagger">
+      <div class="tool-card reveal">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/bamboohr.com" alt="BambooHR" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">BambooHR</div><div class="tool-type">HRIS Platform</div></div>
+      </div>
+      <div class="tool-card reveal d1">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/hibob.com" alt="HiBob" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">HiBob</div><div class="tool-type">HR & People Ops</div></div>
+      </div>
+      <div class="tool-card reveal d2">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/rippling.com" alt="Rippling" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Rippling</div><div class="tool-type">HR & Payroll</div></div>
+      </div>
+      <div class="tool-card reveal d3">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/personio.com" alt="Personio" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Personio</div><div class="tool-type">HR Software</div></div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/notion.so" alt="Notion" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Notion</div><div class="tool-type">Docs & Wiki</div></div>
+      </div>
+      <div class="tool-card reveal d1">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/slack.com" alt="Slack" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Slack</div><div class="tool-type">Communications</div></div>
+      </div>
+      <div class="tool-card reveal d2">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/deel.com" alt="Deel" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Deel</div><div class="tool-type">EOR & Payroll</div></div>
+      </div>
+      <div class="tool-card reveal d3">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/greenhouse.io" alt="Greenhouse" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Greenhouse</div><div class="tool-type">ATS / Recruiting</div></div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/google.com" alt="Google Workspace" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Google Workspace</div><div class="tool-type">Productivity</div></div>
+      </div>
+      <div class="tool-card reveal d1">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/docusign.com" alt="DocuSign" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">DocuSign</div><div class="tool-type">e-Signatures</div></div>
+      </div>
+      <div class="tool-card reveal d2">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/talentlms.com" alt="TalentLMS" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">TalentLMS</div><div class="tool-type">Learning Platform</div></div>
+      </div>
+      <div class="tool-card reveal d3">
+        <div class="tool-logo"><img src="https://logo.clearbit.com/remote.com" alt="Remote.com" onerror="this.style.display='none'"/></div>
+        <div><div class="tool-name">Remote.com</div><div class="tool-type">Global EOR</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <span class="eyebrow" style="color:var(--gold);display:block;margin-bottom:20px;">Ready to start?</span>
+    <h2 class="cta-h2 reveal">Step 1 is a conversation.<br><em>Step 6 is a result.</em></h2>
+    <p class="cta-sub reveal d1">Book a free HR audit and we'll walk you through exactly what your first two weeks would look like — and what's currently at risk in your people operations.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" class="reveal d2">
+      <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-gold btn-lg">Book Free HR Audit →</a>
+      <a href="contact.html" class="btn btn-ghost btn-lg" style="color:var(--white);border-color:rgba(255,255,255,0.2);">Ask a Question First</a>
+    </div>
+    <p style="margin-top:14px;font-family:var(--font-body);font-size:12.5px;color:rgba(255,255,255,0.3);" class="reveal d3">45 minutes. Free. No pitch. Just clarity.</p>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+buildNav('process');
+buildFooter();
+
+/* ── Scroll progress bar ── */
+(function(){
+  const b = document.createElement('div');
+  b.id = 'scroll-bar';
+  document.body.prepend(b);
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    b.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+</script>
+</body>
+</html>

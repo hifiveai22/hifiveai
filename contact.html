@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — HiFive AI</title>
+<meta name="description" content="Book a free HR audit or get in touch with HiFive AI. Fractional HR for companies in UAE, UK, and Singapore."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+
+.page-hero {
+  padding: calc(var(--nav-h) + 80px) var(--px) 80px;
+  background: var(--white); border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.page-hero-inner { max-width: 660px; margin: 0 auto; }
+.page-h1 {
+  font-family: var(--font-display); font-size: clamp(40px, 6vw, 68px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.04;
+  color: var(--ink); margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; color: var(--gold); }
+.page-sub {
+  font-family: var(--font-body); font-size: 18px; color: var(--mid); line-height: 1.75;
+}
+
+/* CONTACT LAYOUT */
+.contact-section { padding: 80px var(--px) 100px; }
+.contact-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: start; }
+
+/* Main booking card */
+.booking-card {
+  background: var(--ink); border-radius: var(--radius-xl); padding: 48px;
+  position: relative; overflow: hidden;
+}
+.booking-card::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,146,42,0.18), transparent 70%);
+  pointer-events: none;
+}
+.booking-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 14px; background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.25); border-radius: 100px;
+  font-family: var(--font-body); font-size: 12px; color: #86efac;
+  margin-bottom: 28px;
+}
+.booking-h2 {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800; letter-spacing: -0.035em; line-height: 1.08;
+  color: var(--white); margin-bottom: 12px;
+}
+.booking-h2 em { color: var(--gold); font-style: italic; }
+.booking-sub {
+  font-family: var(--font-body); font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 36px;
+}
+.booking-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.booking-list li {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-body); font-size: 14.5px; color: rgba(255,255,255,0.7);
+}
+.booking-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #86efac; flex-shrink: 0;
+}
+.booking-duration {
+  display: flex; align-items: center; gap: 10px; margin-top: 20px;
+  font-family: var(--font-body); font-size: 12.5px; color: rgba(255,255,255,0.3);
+}
+
+/* Contact cards sidebar */
+.contact-cards { display: flex; flex-direction: column; gap: 16px; }
+.contact-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 26px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.contact-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.contact-card-icon {
+  width: 42px; height: 42px; border-radius: var(--radius-md);
+  background: var(--cream); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 14px;
+}
+.contact-card-title {
+  font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px;
+}
+.contact-card-body {
+  font-family: var(--font-body); font-size: 14px; color: var(--mid); line-height: 1.65;
+}
+.contact-card-body a {
+  color: var(--gold); font-weight: 500; border-bottom: 1px solid var(--gold-light); transition: border-color 0.2s;
+}
+.contact-card-body a:hover { border-color: var(--gold); }
+
+/* Geo strip */
+.geo-section { background: var(--cream); padding: 64px var(--px); }
+.geo-inner { max-width: var(--max-w); margin: 0 auto; }
+.geo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.geo-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 28px 24px; transition: box-shadow 0.2s, transform 0.2s;
+}
+.geo-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-3px); }
+.geo-flag { font-size: 36px; margin-bottom: 14px; }
+.geo-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.geo-law { font-family: var(--font-mono); font-size: 10.5px; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.geo-body { font-family: var(--font-body); font-size: 14px; color: var(--mid); line-height: 1.65; }
+@media (max-width: 860px) { .geo-grid { grid-template-columns: 1fr; } }
+
+/* Pricing section */
+.pricing-section { padding: 80px var(--px) 100px; }
+.pricing-inner { max-width: var(--max-w); margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.pricing-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-xl);
+  padding: 32px 28px; position: relative; transition: box-shadow 0.25s, transform 0.25s;
+}
+.pricing-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.pricing-card.featured {
+  background: var(--ink); border-color: var(--ink);
+}
+.pricing-card.featured .pricing-tier { color: var(--gold); }
+.pricing-card.featured .pricing-amount { color: var(--white); }
+.pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.5); }
+.pricing-card.featured .pricing-feature { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.1); }
+.pricing-card.featured .pricing-feature-icon { background: rgba(34,197,94,0.15); border-color: rgba(34,197,94,0.3); color: #86efac; }
+.featured-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: var(--white); padding: 4px 14px;
+  border-radius: 100px; font-family: var(--font-body); font-size: 11.5px; font-weight: 600;
+  white-space: nowrap;
+}
+.pricing-tier {
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 14px; display: block;
+}
+.pricing-amount {
+  font-family: var(--font-display); font-size: 40px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.04em; line-height: 1;
+  margin-bottom: 4px;
+}
+.pricing-amount sup { font-size: 22px; vertical-align: top; margin-top: 8px; }
+.pricing-amount span { font-size: 16px; font-weight: 400; }
+.pricing-desc {
+  font-family: var(--font-body); font-size: 13px; color: var(--muted);
+  margin-bottom: 24px; line-height: 1.5;
+}
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.pricing-feature {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-body); font-size: 13.5px; color: var(--mid);
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.pricing-feature:last-child { border-bottom: none; padding-bottom: 0; }
+.pricing-feature-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #16a34a; flex-shrink: 0;
+}
+@media (max-width: 860px) { .pricing-grid { grid-template-columns: 1fr; } .contact-inner { grid-template-columns: 1fr; } }
+</style>
+
+<style>
+/* ── Page entrance fade ── */
+body { animation: pageFadeIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+@keyframes pageFadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+</style>
+<script>
+/* ── Page exit fade on internal links ── */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || a.target === '_blank') return;
+  e.preventDefault();
+  document.body.style.transition = 'opacity 0.22s';
+  document.body.style.opacity = '0';
+  setTimeout(() => { window.location.href = href; }, 230);
+});
+</script>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow reveal">Get started today</span>
+    <h1 class="page-h1 reveal d1">Your HR function is<br><em class="gold-underline reveal">45 minutes away.</em></h1>
+    <p class="page-sub reveal d2">Book a free audit or ask a question. No obligations. No pitch. Just a direct conversation about your people operations — and what's currently at risk.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner section">
+
+    <!-- Booking card -->
+    <div class="booking-card reveal-left">
+      <div class="booking-tag">
+        <span class="dot-live"></span>
+        Booking available now
+      </div>
+      <h2 class="booking-h2">Free HR Audit.<br><em>45 minutes.</em></h2>
+      <p class="booking-sub">A genuine review of your HR function — not a sales call. You'll leave with clarity on your top 5 risks and a clear picture of what to do about them.</p>
+      <ul class="booking-list">
+        <li><span class="booking-check">✓</span>Complete HR systems review</li>
+        <li><span class="booking-check">✓</span>Compliance risk identification (UAE / UK / SG)</li>
+        <li><span class="booking-check">✓</span>Hiring process evaluation</li>
+        <li><span class="booking-check">✓</span>Prioritised recommendations report</li>
+        <li><span class="booking-check">✓</span>Clear next steps and cost estimate</li>
+      </ul>
+      <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;">Schedule Free HR Audit →</a>
+      <div class="booking-duration">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 4.5V7l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        45 minutes &nbsp;·&nbsp; Free &nbsp;·&nbsp; No obligations &nbsp;·&nbsp; Via Google Meet or Zoom
+      </div>
+    </div>
+
+    <!-- Contact options -->
+    <div class="contact-cards reveal-right">
+      <div class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-title">Email us directly</div>
+        <div class="contact-card-body">
+          Questions about pricing, services, or a specific HR challenge? We respond within a few hours.<br/>
+          <a href="mailto:hello@hifiveai.co">hello@hifiveai.co</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <div class="contact-card-title">WhatsApp (fastest response)</div>
+        <div class="contact-card-body">
+          Prefer a quick message? Send us a WhatsApp and we'll get back to you within the hour during business hours.<br/>
+          <a href="https://wa.me/message/hifiveai" target="_blank">Message on WhatsApp →</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">💼</div>
+        <div class="contact-card-title">LinkedIn</div>
+        <div class="contact-card-body">
+          Follow us for HR compliance updates, hiring insights, and people ops tips for scaling companies.<br/>
+          <a href="https://linkedin.com/company/hifiveai" target="_blank">HiFive AI on LinkedIn →</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">🌐</div>
+        <div class="contact-card-title">Platform — hifiveai.co</div>
+        <div class="contact-card-body">
+          Try our AI-powered screening and async video interview tools directly.<br/>
+          <a href="https://hifiveai.co" target="_blank">Visit hifiveai.co →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GEO -->
+<section class="geo-section">
+  <div class="geo-inner">
+    <span class="eyebrow reveal">Where we operate</span>
+    <h2 class="reveal d1" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">Three jurisdictions. One retainer.</h2>
+    <p class="reveal d2" style="font-family:var(--font-body);font-size:17px;color:var(--mid);line-height:1.75;max-width:520px;">Deep employment law knowledge in each market — not a generic template with "insert jurisdiction here."</p>
+    <div class="geo-grid">
+      <div class="geo-card reveal">
+        <div class="geo-flag">🇦🇪</div>
+        <div class="geo-name">United Arab Emirates</div>
+        <div class="geo-law">Federal Decree-Law 33 of 2021</div>
+        <p class="geo-body">UAE Labour Law including DIFC and ADGM free zone frameworks. Gratuity calculations, visa documentation, and end-of-service requirements fully covered.</p>
+      </div>
+      <div class="geo-card reveal d1">
+        <div class="geo-flag">🇬🇧</div>
+        <div class="geo-name">United Kingdom</div>
+        <div class="geo-law">Employment Rights Act 1996</div>
+        <p class="geo-body">UK employment law including unfair dismissal, TUPE, statutory leave entitlements, GDPR HR obligations, and IR35 contractor compliance.</p>
+      </div>
+      <div class="geo-card reveal d2">
+        <div class="geo-flag">🇸🇬</div>
+        <div class="geo-name">Singapore</div>
+        <div class="geo-law">Employment Act · MOM Guidelines</div>
+        <p class="geo-body">Singapore Employment Act, Tripartite Guidelines, CPF obligations, fair hiring framework, and MOM submission requirements for foreign employees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="pricing-inner">
+    <span class="eyebrow reveal">Simple, flat pricing</span>
+    <h2 class="reveal d1" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">No surprise invoices. No hourly billing.</h2>
+    <p class="reveal d2" style="font-family:var(--font-body);font-size:17px;color:var(--mid);line-height:1.75;max-width:520px;">A flat monthly retainer that covers everything your HR function needs. Priced by company size. Cancel anytime. No long-term contracts.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <span class="pricing-tier">Starter</span>
+        <div class="pricing-amount"><sup>$</sup>1,200<span>/mo</span></div>
+        <p class="pricing-desc">5–25 staff · UAE, UK, or Singapore</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Employee handbook (month 1)</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Compliance audit (month 1)</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>HR advisory (5 hrs/month Slack)</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>1 hiring assist per month</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Monthly people dashboard</li>
+        </ul>
+        <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-ghost" style="width:100%;justify-content:center;">Book Free Audit →</a>
+      </div>
+      <div class="pricing-card featured reveal d1">
+        <span class="featured-badge">Most popular</span>
+        <span class="pricing-tier">Growth</span>
+        <div class="pricing-amount"><sup>$</sup>2,200<span>/mo</span></div>
+        <p class="pricing-desc">26–60 staff · UAE, UK, or Singapore</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Everything in Starter</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Performance review framework</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Full policy library</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>2 hiring assists per month</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Monthly 60-min strategy call</li>
+        </ul>
+        <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;">Book Free Audit →</a>
+      </div>
+      <div class="pricing-card reveal d2">
+        <span class="pricing-tier">Scale</span>
+        <div class="pricing-amount"><sup>$</sup>3,500<span>/mo</span></div>
+        <p class="pricing-desc">61–150 staff · UAE, UK, or Singapore</p>
+        <ul class="pricing-features">
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Everything in Growth</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Manager training guides</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Org design advisory</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>3 hiring assists per month</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Bi-weekly strategy calls</li>
+        </ul>
+        <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-ghost" style="width:100%;justify-content:center;">Book Free Audit →</a>
+      </div>
+    </div>
+    <p style="margin-top:24px;text-align:center;font-family:var(--font-body);font-size:13px;color:var(--muted);" class="reveal d3">
+      Not sure which tier fits? Start with a free audit — we'll tell you exactly what your company needs.
+      &nbsp;·&nbsp; <a href="contact.html" style="color:var(--gold);font-weight:500;">One-time compliance audit available from $1,800 →</a>
+    </p>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+buildNav('contact');
+buildFooter();
+
+/* ── Scroll progress bar ── */
+(function(){
+  const b = document.createElement('div');
+  b.id = 'scroll-bar';
+  document.body.prepend(b);
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    b.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+</script>
+</body>
+</html>
