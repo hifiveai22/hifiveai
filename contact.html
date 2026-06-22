@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact — HiFive AI</title>
-<meta name="description" content="Book a free HR audit or get in touch with HiFive AI. Fractional HR for companies in UAE, UK, and Singapore."/>
+<meta name="description" content="Book a free HR audit or get in touch with HiFive AI. Fractional HR for companies in UAE, UK, Singapore, India, and the US."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="shared.css"/>
@@ -101,17 +101,18 @@
 /* Geo strip */
 .geo-section { background: var(--cream); padding: 64px var(--px); }
 .geo-inner { max-width: var(--max-w); margin: 0 auto; }
-.geo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+.geo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 40px; }
 .geo-card {
   background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg);
-  padding: 28px 24px; transition: box-shadow 0.2s, transform 0.2s;
+  padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s;
 }
 .geo-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-3px); }
-.geo-flag { font-size: 36px; margin-bottom: 14px; }
-.geo-name { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-.geo-law { font-family: var(--font-mono); font-size: 10.5px; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-.geo-body { font-family: var(--font-body); font-size: 14px; color: var(--mid); line-height: 1.65; }
-@media (max-width: 860px) { .geo-grid { grid-template-columns: 1fr; } }
+.geo-flag { font-size: 30px; margin-bottom: 12px; }
+.geo-name { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.geo-law { font-family: var(--font-mono); font-size: 9.5px; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.geo-body { font-family: var(--font-body); font-size: 13px; color: var(--mid); line-height: 1.6; }
+@media (max-width: 1024px) { .geo-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .geo-grid { grid-template-columns: 1fr 1fr; } }
 
 /* Pricing section */
 .pricing-section { padding: 80px var(--px) 100px; }
@@ -211,7 +212,7 @@ document.addEventListener('click', e => {
       <p class="booking-sub">A genuine review of your HR function — not a sales call. You'll leave with clarity on your top 5 risks and a clear picture of what to do about them.</p>
       <ul class="booking-list">
         <li><span class="booking-check">✓</span>Complete HR systems review</li>
-        <li><span class="booking-check">✓</span>Compliance risk identification (UAE / UK / SG)</li>
+        <li><span class="booking-check">✓</span>Compliance risk identification (UAE / UK / SG / IN / US)</li>
         <li><span class="booking-check">✓</span>Hiring process evaluation</li>
         <li><span class="booking-check">✓</span>Prioritised recommendations report</li>
         <li><span class="booking-check">✓</span>Clear next steps and cost estimate</li>
@@ -266,7 +267,7 @@ document.addEventListener('click', e => {
 <section class="geo-section">
   <div class="geo-inner">
     <span class="eyebrow reveal">Where we operate</span>
-    <h2 class="reveal d1" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">Three jurisdictions. One retainer.</h2>
+    <h2 class="reveal d1" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.035em;color:var(--ink);margin-bottom:14px;">Five jurisdictions. One retainer.</h2>
     <p class="reveal d2" style="font-family:var(--font-body);font-size:17px;color:var(--mid);line-height:1.75;max-width:520px;">Deep employment law knowledge in each market — not a generic template with "insert jurisdiction here."</p>
     <div class="geo-grid">
       <div class="geo-card reveal">
@@ -287,11 +288,21 @@ document.addEventListener('click', e => {
         <div class="geo-law">Employment Act · MOM Guidelines</div>
         <p class="geo-body">Singapore Employment Act, Tripartite Guidelines, CPF obligations, fair hiring framework, and MOM submission requirements for foreign employees.</p>
       </div>
+      <div class="geo-card reveal d3">
+        <div class="geo-flag">🇮🇳</div>
+        <div class="geo-name">India</div>
+        <div class="geo-law">Four Labour Codes · State Acts</div>
+        <p class="geo-body">India's consolidated labour codes, PF, ESI, Shops & Establishments Act, and state-specific compliance for your hiring and employment structures.</p>
+      </div>
+      <div class="geo-card reveal d4">
+        <div class="geo-flag">🇺🇸</div>
+        <div class="geo-name">United States</div>
+        <div class="geo-law">FLSA · EEO · State Employment Law</div>
+        <p class="geo-body">US federal employment law, at-will frameworks, FLSA, EEO obligations, state-specific leave laws, and contractor vs. employee classification.</p>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- PRICING -->
 <section class="pricing-section">
   <div class="pricing-inner">
     <span class="eyebrow reveal">Simple, flat pricing</span>
@@ -300,8 +311,8 @@ document.addEventListener('click', e => {
     <div class="pricing-grid">
       <div class="pricing-card reveal">
         <span class="pricing-tier">Starter</span>
-        <div class="pricing-amount"><sup>$</sup>1,200<span>/mo</span></div>
-        <p class="pricing-desc">5–25 staff · UAE, UK, or Singapore</p>
+        <div class="pricing-amount"><sup>$</sup>1,888<span>/mo</span></div>
+        <p class="pricing-desc">5–25 staff · UAE, UK, SG, IN or US</p>
         <ul class="pricing-features">
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Employee handbook (month 1)</li>
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Compliance audit (month 1)</li>
@@ -314,8 +325,8 @@ document.addEventListener('click', e => {
       <div class="pricing-card featured reveal d1">
         <span class="featured-badge">Most popular</span>
         <span class="pricing-tier">Growth</span>
-        <div class="pricing-amount"><sup>$</sup>2,200<span>/mo</span></div>
-        <p class="pricing-desc">26–60 staff · UAE, UK, or Singapore</p>
+        <div class="pricing-amount"><sup>$</sup>2,888<span>/mo</span></div>
+        <p class="pricing-desc">26–60 staff · UAE, UK, SG, IN or US</p>
         <ul class="pricing-features">
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Everything in Starter</li>
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Performance review framework</li>
@@ -327,16 +338,16 @@ document.addEventListener('click', e => {
       </div>
       <div class="pricing-card reveal d2">
         <span class="pricing-tier">Scale</span>
-        <div class="pricing-amount"><sup>$</sup>3,500<span>/mo</span></div>
-        <p class="pricing-desc">61–150 staff · UAE, UK, or Singapore</p>
+        <div class="pricing-amount" style="font-size:32px;">Custom</div>
+        <p class="pricing-desc">61–150+ staff · All five jurisdictions</p>
         <ul class="pricing-features">
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Everything in Growth</li>
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Manager training guides</li>
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Org design advisory</li>
-          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>3 hiring assists per month</li>
+          <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Unlimited hiring assists</li>
           <li class="pricing-feature"><span class="pricing-feature-icon">✓</span>Bi-weekly strategy calls</li>
         </ul>
-        <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-ghost" style="width:100%;justify-content:center;">Book Free Audit →</a>
+        <a href="contact.html" class="btn btn-ghost" style="width:100%;justify-content:center;">Talk to Us →</a>
       </div>
     </div>
     <p style="margin-top:24px;text-align:center;font-family:var(--font-body);font-size:13px;color:var(--muted);" class="reveal d3">

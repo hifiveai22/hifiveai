@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Why HiFive AI — Built Different</title>
-<meta name="description" content="Why HiFive AI is unlike any fractional HR provider in UAE, UK, or Singapore. Senior team. AI-native delivery. Flat pricing. Results in 48 hours."/>
+<meta name="description" content="Why HiFive AI is unlike any fractional HR provider in UAE, UK, Singapore, India, or the US. Senior team. AI-native delivery. Flat pricing. Results in 48 hours."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="shared.css"/>
@@ -13,7 +13,15 @@
 /* PAGE HERO */
 .page-hero {
   padding: calc(var(--nav-h) + 80px) var(--px) 80px;
-  background: var(--ink); overflow: hidden; position: relative;
+  background: linear-gradient(135deg, #1A1612 0%, #2C1f0e 50%, #1A1612 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
+  overflow: hidden; position: relative;
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 .page-hero::before {
   content: '';
@@ -196,7 +204,7 @@ document.addEventListener('click', e => {
   <div class="page-hero-inner">
     <span class="eyebrow" style="color:var(--gold);">Why HiFive AI</span>
     <h1 class="page-h1 reveal">Senior HR expertise.<br>AI-native delivery.<br><em class="gold-underline reveal">Built for companies like yours.</em></h1>
-    <p class="page-sub reveal d1">Most fractional HR providers are solo generalists with a spreadsheet and a CIPD certificate. HiFive AI is something different — a team combining deep strategy and compliance experience with AI systems built specifically for HR delivery.</p>
+    <p class="page-sub reveal d1">Most fractional HR providers are generalists with limited jurisdictional depth. HiFive AI is something different — a team combining deep strategy and compliance experience with AI systems built specifically for HR delivery, across five global markets.</p>
     <div class="hero-cred-strip stagger reveal d2">
       <div class="hero-cred">
         <img src="https://logo.clearbit.com/jpmorgan.com" alt="JPMorgan" onerror="this.style.display='none'"/>
@@ -263,7 +271,7 @@ document.addEventListener('click', e => {
       <div class="pillar">
         <span class="pillar-eyebrow">Differentiator 03</span>
         <h3 class="pillar-title">Flat monthly retainer — a fraction of the cost of a hire</h3>
-        <p class="pillar-body">A UK HR Manager costs £66,000–£96,000 per year in base salary alone — before NI, benefits, and recruitment fees. Our Growth retainer is $2,200/month. You get the same outcomes: hiring support, onboarding, compliance, documentation, and strategic HR advisory. No benefits package. No notice period. No recruitment fee.</p>
+        <p class="pillar-body">A UK HR Manager costs £66,000–£96,000 per year in base salary alone — before NI, benefits, and recruitment fees. Our Growth retainer is $2,888/month. You get the same outcomes: hiring support, onboarding, compliance, documentation, and strategic HR advisory. No benefits package. No notice period. No recruitment fee.</p>
       </div>
       <div class="pillar">
         <span class="pillar-eyebrow">Differentiator 04</span>
@@ -272,8 +280,8 @@ document.addEventListener('click', e => {
       </div>
       <div class="pillar">
         <span class="pillar-eyebrow">Differentiator 05</span>
-        <h3 class="pillar-title">Three jurisdictions. One retainer. No extra fees.</h3>
-        <p class="pillar-body">Most HR providers know one market. We operate across UAE (Federal Decree-Law 33), UK (Employment Rights Act), and Singapore (MOM/Employment Act) — with the same depth in each. If you're scaling across borders, you need one partner who covers all of them, not three separate consultants billing separately.</p>
+        <h3 class="pillar-title">Five jurisdictions. One retainer. No extra fees.</h3>
+        <p class="pillar-body">Most HR providers know one market. We operate across UAE (Federal Decree-Law 33), UK (Employment Rights Act), Singapore (MOM/Employment Act), India (Four Labour Codes), and the US (FLSA/state law) — with meaningful depth in each. If you're scaling across borders, you need one partner who covers all of them, not five separate consultants billing separately.</p>
       </div>
     </div>
   </div>
@@ -298,10 +306,10 @@ document.addEventListener('click', e => {
       <tbody>
         <tr class="highlight">
           <td>HiFive AI (Growth)</td>
-          <td class="td-good">$2,200/month</td>
+          <td class="td-good">$2,888/month</td>
           <td class="td-good">48 hours</td>
           <td class="td-good">Yes — native</td>
-          <td class="td-good">UAE · UK · SG</td>
+          <td class="td-good">UAE · UK · SG · IN · US</td>
         </tr>
         <tr>
           <td>Full-time HR Manager (UK)</td>
@@ -351,8 +359,8 @@ document.addEventListener('click', e => {
         <div class="proof-label">Cost to find out your top 5 HR compliance risks — free audit</div>
       </div>
       <div class="proof-card reveal d2">
-        <div class="proof-num">3</div>
-        <div class="proof-label">Jurisdictions covered — UAE, UK, Singapore — in one retainer</div>
+        <div class="proof-num">5</div>
+        <div class="proof-label">Jurisdictions covered — UAE, UK, Singapore, India & US — in one retainer</div>
       </div>
       <div class="proof-card reveal d3">
         <div class="proof-num">10<span>x</span></div>
@@ -366,8 +374,8 @@ document.addEventListener('click', e => {
 <section class="faq-section">
   <div class="faq-inner">
     <span class="eyebrow" style="color:var(--gold);">Common questions</span>
-    <h2 class="faq-h2 reveal">We named every concern.<br>Here's our answer.</h2>
-    <p class="faq-sub reveal d1">Transparency builds more trust than polished spin. Here are the questions we get asked most — answered directly.</p>
+    <h2 class="faq-h2 reveal">Good questions deserve<br>straight answers.</h2>
+    <p class="faq-sub reveal d1">We'd rather address what's on your mind directly than dress it up. Here are the questions we hear most often — answered honestly.</p>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
@@ -402,7 +410,7 @@ document.addEventListener('click', e => {
         What markets do you cover?
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">Primary markets: UAE, UK, and Singapore — where we have deep employment law knowledge and active client focus. Secondary markets (advisory and documentation): India, Australia, and broader Southeast Asia. For EOR arrangements in other markets, we coordinate with Deel or Remote.com who provide the local compliance layer.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Primary markets: UAE, UK, Singapore, India, and the United States — where we have deep employment law knowledge and active client focus. For EOR arrangements in other markets globally, we coordinate with Deel or Remote.com who provide the local compliance layer.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">

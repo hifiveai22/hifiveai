@@ -136,11 +136,13 @@ function buildFooter() {
       <div class="footer-inner">
         <div>
           <div class="footer-brand-name">HiFive<span>AI</span></div>
-          <p class="footer-brand-desc">AI-native people operations for growing companies between 5 and 150 people — so your team can focus entirely on growth.</p>
+          <p class="footer-brand-desc">AI-native people operations for growing companies between 5 and 150 people — so your team can focus entirely on growth. Covering UAE · UK · Singapore · India · US.</p>
           <div class="footer-geo">
             <span class="footer-geo-pill">🇦🇪 UAE</span>
             <span class="footer-geo-pill">🇬🇧 United Kingdom</span>
             <span class="footer-geo-pill">🇸🇬 Singapore</span>
+            <span class="footer-geo-pill">🇮🇳 India</span>
+            <span class="footer-geo-pill">🇺🇸 United States</span>
             <span class="footer-geo-pill">🌐 Global</span>
           </div>
         </div>

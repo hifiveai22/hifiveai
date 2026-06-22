@@ -193,15 +193,17 @@ button { cursor: pointer; font-family: inherit; }
 
 /* Mega dropdown */
 .nav-mega {
-  position: absolute; top: calc(100% + 6px); left: 50%;
+  position: absolute; top: calc(100% - 2px); left: 50%;
   transform: translateX(-50%) translateY(-6px);
   opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
+  transition: opacity 0.22s, transform 0.22s, visibility 0s linear 0.22s;
   z-index: 999;
+  padding-top: 10px; /* invisible bridge — keeps hover active while cursor travels down */
 }
 .nav-item:hover .nav-mega {
   opacity: 1; visibility: visible; pointer-events: all;
   transform: translateX(-50%) translateY(0);
+  transition: opacity 0.22s, transform 0.22s, visibility 0s;
 }
 .nav-mega-inner {
   background: var(--white); border: 1px solid var(--border);
@@ -424,3 +426,150 @@ footer {
 .accord-body, .faq-a {
   transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1);
 }
+
+/* ============================================================
+   ENHANCED ANIMATIONS & VISUAL POLISH — v2
+============================================================ */
+
+/* ── Richer reveal: blur-in variant ── */
+.reveal-blur {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1),
+              filter 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-blur.visible { opacity: 1; filter: blur(0); transform: none; }
+
+/* ── Gold shimmer on headings ── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, var(--gold) 0%, #f0cc6e 40%, var(--gold) 60%, #a97922 100%);
+  background-size: 800px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3.5s ease-in-out infinite;
+}
+
+/* ── Floating particles (hero canvas supplement) ── */
+@keyframes floatParticle {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+}
+
+/* ── Pulsing ring on CTA buttons ── */
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(196,146,42,0.4); }
+  70%  { box-shadow: 0 0 0 14px rgba(196,146,42,0); }
+  100% { box-shadow: 0 0 0 0 rgba(196,146,42,0); }
+}
+.btn-gold.pulse { animation: ringPulse 2.2s ease-out infinite; }
+
+/* ── Gradient border on featured card ── */
+.pricing-card.featured {
+  background: var(--ink);
+  box-shadow: 0 0 0 2px var(--gold), var(--shadow-lg);
+}
+
+/* ── Animated gradient background on dark sections ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.problem-section {
+  background: linear-gradient(135deg, #1A1612 0%, #2C2013 50%, #1A1612 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
+}
+.cta-section {
+  background: linear-gradient(135deg, #1A1612 0%, #241a0f 60%, #1A1612 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 14s ease infinite;
+}
+
+/* ── Service card — gold left accent on hover ── */
+.service-card {
+  border-left: 3px solid transparent;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.3s, border-left-color 0.3s;
+}
+.service-card:hover { border-left-color: var(--gold); }
+
+/* ── Stagger: more delay steps ── */
+.stagger.visible > *:nth-child(7){opacity:1;transform:none;transition-delay:0.47s}
+.stagger.visible > *:nth-child(8){opacity:1;transform:none;transition-delay:0.54s}
+
+/* ── KPI cell: animated top border on hover ── */
+.kpi-cell {
+  position: relative; overflow: hidden;
+}
+.kpi-cell::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.kpi-cell:hover::after { transform: scaleX(1); }
+
+/* ── Testimonial card: gold left accent ── */
+.testi-card { border-left: 3px solid transparent; transition: border-left-color 0.25s, box-shadow 0.25s, transform 0.25s; }
+.testi-card:hover { border-left-color: var(--gold); }
+
+/* ── Timeline step number: gold ring on hover ── */
+.step-num {
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.timeline-step:hover .step-num {
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(196,146,42,0.2);
+}
+
+/* ── Nav CTA: subtle pulse on page load ── */
+.nav-cta { animation: ringPulse 3s ease-out 2s 2; }
+
+/* ── Geo pill: hover lift ── */
+.footer-geo-pill {
+  transition: all 0.2s; cursor: default;
+}
+.footer-geo-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.14);
+  color: var(--white);
+}
+
+/* ── Floating CTA: entrance animation ── */
+@keyframes ctaSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+.floating-cta.visible { animation: ctaSlideUp 0.4s cubic-bezier(0.16,1,0.3,1); }
+
+/* ── Objection card: gold question mark accent ── */
+.obj-q::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 60px;
+  color: var(--gold);
+  opacity: 0.12;
+  position: absolute;
+  top: -8px; left: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+.obj-card { position: relative; overflow: hidden; }
+
+/* ── Marquee: faster on small screens ── */
+@media (max-width: 640px) {
+  .marquee-inner { animation-duration: 28s; }
+}
+
+/* ── Page transition: smoother ── */
+body { transition: opacity 0.22s ease; }
