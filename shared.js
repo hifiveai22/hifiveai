@@ -1,8 +1,45 @@
 /* ============================================================
-   HIFIVE AI — SHARED COMPONENTS
+   HIFIVE AI — SHARED COMPONENTS v3
 ============================================================ */
 
-/* ── Global reveal observer (re-callable after DOM injection) ── */
+/* ── Inject favicon ── */
+(function(){
+  const link = document.createElement('link');
+  link.rel = 'icon'; link.type = 'image/svg+xml';
+  link.href = 'data:image/svg+xml,' + encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#F5F0E8"/>
+  <!-- Pentagon outline -->
+  <polygon points="16,6 25.5,12.9 21.9,24.1 10.1,24.1 6.5,12.9" stroke="#B07D2E" stroke-width="1.2" fill="none"/>
+  <!-- Spokes (network feel) -->
+  <line x1="16" y1="16" x2="16" y2="6" stroke="#B07D2E" stroke-width="0.5" opacity="0.4"/>
+  <line x1="16" y1="16" x2="25.5" y2="12.9" stroke="#B07D2E" stroke-width="0.5" opacity="0.4"/>
+  <line x1="16" y1="16" x2="21.9" y2="24.1" stroke="#B07D2E" stroke-width="0.5" opacity="0.4"/>
+  <line x1="16" y1="16" x2="10.1" y2="24.1" stroke="#B07D2E" stroke-width="0.5" opacity="0.4"/>
+  <line x1="16" y1="16" x2="6.5" y2="12.9" stroke="#B07D2E" stroke-width="0.5" opacity="0.4"/>
+  <!-- Nodes at vertices -->
+  <circle cx="16" cy="6" r="2" fill="#B07D2E"/>
+  <circle cx="25.5" cy="12.9" r="2" fill="#B07D2E"/>
+  <circle cx="21.9" cy="24.1" r="2" fill="#B07D2E"/>
+  <circle cx="10.1" cy="24.1" r="2" fill="#B07D2E"/>
+  <circle cx="6.5" cy="12.9" r="2" fill="#B07D2E"/>
+  <!-- Center node -->
+  <circle cx="16" cy="16" r="1.5" fill="#B07D2E" opacity="0.6"/>
+</svg>
+  `);
+  document.head.appendChild(link);
+
+  // Also inject scroll progress bar
+  const bar = document.createElement('div');
+  bar.id = 'scroll-bar';
+  document.body.prepend(bar);
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+/* ── Global reveal observer ── */
 let _revealObs = null;
 function initReveal() {
   if (_revealObs) _revealObs.disconnect();
@@ -13,8 +50,8 @@ function initReveal() {
         _revealObs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger')
+  }, { threshold: 0.06, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .stagger, .gold-underline')
     .forEach(el => _revealObs.observe(el));
 }
 
@@ -25,12 +62,12 @@ function animateCounters() {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || '';
     const prefix = el.dataset.prefix || '';
-    const duration = 1600;
+    const duration = 1800;
     const start = performance.now();
     el._counted = true;
     function step(now) {
       const p = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - p, 3);
+      const ease = 1 - Math.pow(1 - p, 4);
       const val = target % 1 === 0 ? Math.round(ease * target) : (ease * target).toFixed(1);
       el.textContent = prefix + val + suffix;
       if (p < 1) requestAnimationFrame(step);
@@ -38,8 +75,6 @@ function animateCounters() {
     requestAnimationFrame(step);
   });
 }
-
-/* ── Counter observer ── */
 function initCounters() {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { animateCounters(); obs.unobserve(e.target); } });
@@ -47,7 +82,7 @@ function initCounters() {
   document.querySelectorAll('[data-count]').forEach(el => obs.observe(el));
 }
 
-/* ── Marquee clone (idempotent) ── */
+/* ── Marquee clone ── */
 function initMarquees() {
   document.querySelectorAll('.marquee-inner').forEach(inner => {
     if (inner.dataset.cloned) return;
@@ -58,10 +93,15 @@ function initMarquees() {
   });
 }
 
+/* ── Logo helper: Google S2 favicon CDN — most reliable ── */
+function logoUrl(domain) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+}
+
 /* ── Nav ── */
 function buildNav(activePage) {
   const pages = [
-    { id: 'index',     label: 'Home',     href: 'index.html' },
+    { id: 'index',     label: 'Home',     href: 'home.html' },
     { id: 'offerings', label: 'Offerings', href: 'offerings.html', mega: true },
     { id: 'why',       label: 'Why Us',   href: 'why.html' },
     { id: 'process',   label: 'Process',  href: 'process.html' },
@@ -70,7 +110,7 @@ function buildNav(activePage) {
   const megaItems = [
     { icon:'🎯', label:'Hiring & Recruitment',     desc:'End-to-end candidate pipeline',      href:'offerings.html#hiring' },
     { icon:'🚀', label:'Onboarding & Offboarding', desc:'Day 1 to final day',                  href:'offerings.html#onboarding' },
-    { icon:'📋', label:'Contracts & Documentation',desc:'24-hour turnaround',                  href:'offerings.html#contracts' },
+    { icon:'📋', label:'Contracts & Documentation',desc:'Fast turnaround',                     href:'offerings.html#contracts' },
     { icon:'⚖️', label:'Compliance & Governance',  desc:'Multi-jurisdiction expertise',        href:'offerings.html#compliance' },
     { icon:'🌍', label:'Global Workforce',          desc:'EOR, contractors, distributed teams', href:'offerings.html#global' },
     { icon:'🎓', label:'Learning & Development',    desc:'LMS setup & training programmes',    href:'offerings.html#ld' },
@@ -104,7 +144,7 @@ function buildNav(activePage) {
 
   document.body.insertAdjacentHTML('afterbegin', `
     <nav id="nav">
-      <a href="index.html" class="nav-logo">HiFive<span>AI</span></a>
+      <a href="home.html" class="nav-logo">HiFive<span>AI</span></a>
       <div class="nav-links">${linksHtml}</div>
       <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-primary btn-sm nav-cta">Book Free HR Audit →</a>
       <button class="mobile-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
@@ -125,7 +165,6 @@ function buildNav(activePage) {
     if (mm && tog && !mm.contains(e.target) && !tog.contains(e.target)) mm.classList.remove('open');
   });
 
-  // Re-run reveal after nav injected
   setTimeout(initReveal, 0);
 }
 
@@ -136,7 +175,7 @@ function buildFooter() {
       <div class="footer-inner">
         <div>
           <div class="footer-brand-name">HiFive<span>AI</span></div>
-          <p class="footer-brand-desc">AI-native people operations for growing companies between 5 and 150 people — so your team can focus entirely on growth. Covering UAE · UK · Singapore · India · US.</p>
+          <p class="footer-brand-desc">AI-native people operations for growing companies between 5 and 150 people. Covering UAE · UK · Singapore · India · US.</p>
           <div class="footer-geo">
             <span class="footer-geo-pill">🇦🇪 UAE</span>
             <span class="footer-geo-pill">🇬🇧 United Kingdom</span>
@@ -160,7 +199,6 @@ function buildFooter() {
           <a href="why.html"     class="footer-col-link">Why Us</a>
           <a href="process.html" class="footer-col-link">How It Works</a>
           <a href="contact.html" class="footer-col-link">Contact</a>
-          <a href="https://hifiveai.co" class="footer-col-link">Platform</a>
         </div>
         <div>
           <div class="footer-col-title">Get Started</div>
@@ -171,7 +209,7 @@ function buildFooter() {
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-bottom-copy">© 2025 HiFive AI. All rights reserved.</span>
+        <span class="footer-bottom-copy">© 2026 HiFive AI. All rights reserved.</span>
         <div style="display:flex;gap:20px;">
           <a href="#" class="footer-bottom-link">Privacy Policy</a>
           <a href="#" class="footer-bottom-link">Terms</a>
@@ -179,7 +217,7 @@ function buildFooter() {
       </div>
     </footer>
     <div class="floating-cta" id="floating-cta">
-      <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-primary btn-sm" style="box-shadow:0 8px 32px rgba(26,22,18,0.25);">Book Free HR Audit →</a>
+      <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-gold btn-sm" style="box-shadow:0 8px 32px rgba(176,125,46,0.35);">Book Free HR Audit →</a>
     </div>
   `);
 
@@ -194,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initCounters();
   initMarquees();
-  // Hash scroll
   const hash = window.location.hash;
   if (hash) {
     const el = document.querySelector(hash);
