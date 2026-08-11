@@ -156,26 +156,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
     };
   }, []);
 
-  // Funnel animation
-  const dashRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const dash = dashRef.current;
-    if (!dash) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.querySelectorAll('.dash-funnel-fill').forEach((f) => f.classList.add('animated'));
-            e.target.querySelectorAll('.dash-budget-fill').forEach((f) => f.classList.add('animated'));
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    obs.observe(dash);
-    return () => obs.disconnect();
-  }, []);
+
 
   // Frag converge animation
   const convergeRef = useRef<HTMLDivElement>(null);
@@ -308,47 +289,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
 
 
-      {/* DASHBOARD PREVIEW */}
-      <section className="dash-preview" id="dashboard">
-        <div className="dash-preview-inner">
-          <div className="dash-preview-header reveal">
-            <div className="eyebrow">Executive Dashboard</div>
-            <h2>Your command center. <em>Not another report.</em></h2>
-            <p>The Executive Dashboard contextualizes raw data against historical trends, industry benchmarks, and company goals. Every metric answers one question: Are we growing efficiently?</p>
-          </div>
-          <div className="dash-mockup reveal-scale" ref={dashRef}>
-            <div className="dash-topbar"><div className="dash-topbar-title">HiFive AI: Executive Dashboard</div><div className="dash-topbar-live"><span className="dot-live" /> Live</div></div>
-            <div className="dash-body">
-              <div className="dash-kpi-row">
-                <div className="dash-kpi"><div className="dash-kpi-num">142</div><div className="dash-kpi-label">Headcount</div><div className="dash-kpi-change up">↑ 4 this month</div></div>
-                <div className="dash-kpi"><div className="dash-kpi-num">$312K</div><div className="dash-kpi-label">Revenue / Employee</div><div className="dash-kpi-change up">↑ 8.2% YoY</div></div>
-                <div className="dash-kpi"><div className="dash-kpi-num">18d</div><div className="dash-kpi-label">Time-to-Hire</div><div className="dash-kpi-change up">↓ 6 days</div></div>
-                <div className="dash-kpi"><div className="dash-kpi-num">6.2%</div><div className="dash-kpi-label">Vol. Attrition</div><div className="dash-kpi-change down">↑ 1.1%</div></div>
-              </div>
-              <div className="dash-lower">
-                <div className="dash-panel">
-                  <div className="dash-panel-title">Hiring Funnel</div>
-                  <div className="dash-funnel-bar"><span className="dash-funnel-label">Applied</span><div className="dash-funnel-track"><div className="dash-funnel-fill animated" style={{ '--w': 1 } as React.CSSProperties} /></div><span className="dash-funnel-val">482</span></div>
-                  <div className="dash-funnel-bar"><span className="dash-funnel-label">Screened</span><div className="dash-funnel-track"><div className="dash-funnel-fill animated" style={{ '--w': 0.42 } as React.CSSProperties} /></div><span className="dash-funnel-val">203</span></div>
-                  <div className="dash-funnel-bar"><span className="dash-funnel-label">Interview</span><div className="dash-funnel-track"><div className="dash-funnel-fill animated" style={{ '--w': 0.18 } as React.CSSProperties} /></div><span className="dash-funnel-val">87</span></div>
-                  <div className="dash-funnel-bar"><span className="dash-funnel-label">Offered</span><div className="dash-funnel-track"><div className="dash-funnel-fill animated" style={{ '--w': 0.07 } as React.CSSProperties} /></div><span className="dash-funnel-val">34</span></div>
-                  <div className="dash-funnel-bar"><span className="dash-funnel-label">Accepted</span><div className="dash-funnel-track"><div className="dash-funnel-fill animated" style={{ '--w': 0.06 } as React.CSSProperties} /></div><span className="dash-funnel-val">30</span></div>
-                </div>
-                <div className="dash-panel">
-                  <div className="dash-panel-title">Organization Health</div>
-                  <div className="dash-health-grid">
-                    <div><div className="dash-health-item-label">Engagement (eNPS)</div><div className="dash-health-item-val">+42</div><div className="dash-health-item-change good">↑ 6 vs last quarter</div></div>
-                    <div><div className="dash-health-item-label">Bench Strength</div><div className="dash-health-item-val">3.2</div><div className="dash-health-item-change gold">Avg successors per role</div></div>
-                    <div><div className="dash-health-item-label">Internal Mobility</div><div className="dash-health-item-val">24%</div><div className="dash-health-item-change good">↑ 4% vs last year</div></div>
-                    <div><div className="dash-health-item-label">90-Day Retention</div><div className="dash-health-item-val">96%</div><div className="dash-health-item-change good">↑ 2%</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="dash-bottom-bar"><div className="dash-compliance"><div className="dash-compliance-dot" />Compliance: Green - All jurisdictions</div><div className="dash-budget">Budget Utilization<div className="dash-budget-bar"><div className="dash-budget-fill animated" /></div>78%</div></div>
-          </div>
-        </div>
-      </section>
+
 
       {/* OUTCOMES */}
       <section className="outcomes-enhanced" id="outcomes">
