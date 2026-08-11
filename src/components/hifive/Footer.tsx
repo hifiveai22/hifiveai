@@ -1,9 +1,10 @@
 'use client';
 
-type PageId = 'home' | 'platform' | 'solutions' | 'why' | 'contact' | 'resources';
+import Link from 'next/link';
+import { type PageId } from '@/lib/routes';
 
 interface FooterProps {
-  onNavigate: (page: PageId) => void;
+  onNavigate?: (page: PageId, sectionId?: string) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -11,9 +12,9 @@ export default function Footer({ onNavigate }: FooterProps) {
     <footer>
       <div className="footer-inner">
         <div>
-          <div className="footer-brand-name">
+          <Link href="/" className="footer-brand-name">
             HiFive<span>AI</span>
-          </div>
+          </Link>
           <p className="footer-brand-desc">
             The AI-native People Operating System for the modern enterprise. Five
             interconnected modules. One continuously learning intelligence layer.
@@ -40,39 +41,39 @@ export default function Footer({ onNavigate }: FooterProps) {
         </div>
         <div>
           <div className="footer-col-title">Platform</div>
-          <button className="footer-col-link" onClick={() => onNavigate('platform')}>
+          <Link href="/platform#askai" className="footer-col-link" onClick={() => onNavigate?.('platform', 'askai')}>
             HiAI
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('platform')}>
+          </Link>
+          <Link href="/platform#talent" className="footer-col-link" onClick={() => onNavigate?.('platform', 'talent')}>
             HiTalent
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('platform')}>
+          </Link>
+          <Link href="/platform#lifecycle" className="footer-col-link" onClick={() => onNavigate?.('platform', 'lifecycle')}>
             HiPeople
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('platform')}>
+          </Link>
+          <Link href="/platform#payroll" className="footer-col-link" onClick={() => onNavigate?.('platform', 'payroll')}>
             HiPay
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('platform')}>
+          </Link>
+          <Link href="/platform#global" className="footer-col-link" onClick={() => onNavigate?.('platform', 'global')}>
             HiGlobal
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('platform')}>
+          </Link>
+          <Link href="/platform#operations" className="footer-col-link" onClick={() => onNavigate?.('platform', 'operations')}>
             HiOps
-          </button>
+          </Link>
         </div>
         <div>
           <div className="footer-col-title">Company</div>
-          <button className="footer-col-link" onClick={() => onNavigate('solutions')}>
+          <Link href="/solutions" className="footer-col-link" onClick={() => onNavigate?.('solutions')}>
             Solutions
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('why')}>
+          </Link>
+          <Link href="/advantage" className="footer-col-link" onClick={() => onNavigate?.('advantage')}>
             Advantage
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('resources')}>
+          </Link>
+          <Link href="/resources" className="footer-col-link" onClick={() => onNavigate?.('resources')}>
             Resources
-          </button>
-          <button className="footer-col-link" onClick={() => onNavigate('contact')}>
+          </Link>
+          <Link href="/contact" className="footer-col-link" onClick={() => onNavigate?.('contact')}>
             Contact
-          </button>
+          </Link>
         </div>
         <div>
           <div className="footer-col-title">Get Started</div>

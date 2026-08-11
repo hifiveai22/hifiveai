@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import ModuleIcon, { type ModuleName } from './ModuleIcons';
-
-type PageId = 'home' | 'platform' | 'solutions' | 'why' | 'contact' | 'resources';
+import { PAGE_ROUTES, type PageId } from '@/lib/routes';
 
 interface NavigationProps {
   activePage: PageId;
-  onNavigate: (page: PageId) => void;
+  onNavigate?: (page: PageId, sectionId?: string) => void;
 }
 
 const intelligenceItem = {
@@ -63,21 +63,14 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
     return () => document.removeEventListener('click', handleClick);
   }, []);
 
-  const handleNavClick = (page: PageId) => {
-    onNavigate(page);
+  const handleNavClick = (page: PageId, href: string) => {
     setMobileOpen(false);
     setMegaOpen(false);
-  };
-
-  const handleNavClickWithScroll = (page: PageId, sectionId?: string) => {
-    onNavigate(page);
-    setMobileOpen(false);
-    setMegaOpen(false);
-    if (sectionId) {
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 400);
+    if (activePage === page || (activePage === 'why' && page === 'advantage') || (activePage === 'advantage' && page === 'why')) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (onNavigate) {
+      onNavigate(page);
     }
   };
 
@@ -86,13 +79,13 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
     darkNav ? 'dark-nav' : '',
   ].filter(Boolean).join(' ');
 
-  const pages: { id: PageId; label: string; mega?: boolean }[] = [
-    { id: 'home', label: 'Home' },
-    { id: 'platform', label: 'Platform', mega: true },
-    { id: 'solutions', label: 'Solutions' },
-    { id: 'why', label: 'Advantage' },
-    { id: 'resources', label: 'Resources' },
-    { id: 'contact', label: 'Contact' },
+  const pages: { id: PageId; label: string; href: string; mega?: boolean }[] = [
+    { id: 'home', label: 'Home', href: '/' },
+    { id: 'platform', label: 'Platform', href: '/platform', mega: true },
+    { id: 'solutions', label: 'Solutions', href: '/solutions' },
+    { id: 'advantage', label: 'Advantage', href: '/advantage' },
+    { id: 'resources', label: 'Resources', href: '/resources' },
+    { id: 'contact', label: 'Contact', href: '/contact' },
   ];
 
   // Show keyboard hint on first hover of nav
@@ -117,19 +110,22 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
     return () => nav.removeEventListener('mouseenter', showHint);
   }, []);
 
+  const isActive = (id: PageId) => {
+    if (activePage === id) return true;
+    if ((activePage === 'why' || activePage === 'advantage') && (id === 'why' || id === 'advantage')) return true;
+    return false;
+  };
+
   return (
     <>
       <nav id="nav" className={navClass}>
-        <a
-          href="#"
+        <Link
+          href="/"
           className="nav-logo"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick('home');
-          }}
+          onClick={() => handleNavClick('home', '/')}
         >
           HiFive<span>AI</span>
-        </a>
+        </Link>
 
         <div className="nav-links">
           {pages.map((p) =>
@@ -145,9 +141,10 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
                   megaTimeoutRef.current = setTimeout(() => setMegaOpen(false), 150);
                 }}
               >
-                <button
-                  className={`nav-link ${activePage === p.id ? 'active' : ''}`}
-                  onClick={() => handleNavClick(p.id)}
+                <Link
+                  href={p.href}
+                  className={`nav-link ${isActive(p.id) ? 'active' : ''}`}
+                  onClick={() => handleNavClick(p.id, p.href)}
                 >
                   {p.label}
                   <svg viewBox="0 0 12 12" fill="none">
@@ -159,14 +156,19 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
                       strokeLinejoin="round"
                     />
                   </svg>
-                </button>
+                </Link>
                 <div className={`nav-mega ${megaOpen ? 'open' : ''}`}>
                   <div className="nav-mega-inner">
                     <div className="nav-mega-section nav-mega-intelligence">
                       <div className="nav-mega-header">Intelligence Layer</div>
-                      <button
+                      <Link
+                        href={`/platform#${intelligenceItem.sectionId}`}
                         className="nav-mega-item nav-mega-item-highlight"
-                        onClick={() => handleNavClickWithScroll(intelligenceItem.page, intelligenceItem.sectionId)}
+                        onClick={() => {
+                          setMegaOpen(false);
+                          setMobileOpen(false);
+                          if (onNavigate) onNavigate(intelligenceItem.page, intelligenceItem.sectionId);
+                        }}
                       >
                         <span className="nav-mega-icon">
                           <ModuleIcon name={intelligenceItem.moduleName} size={20} />
@@ -175,7 +177,7 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
                           <div className="nav-mega-label">{intelligenceItem.label}</div>
                           <div className="nav-mega-desc">{intelligenceItem.desc}</div>
                         </span>
-                      </button>
+                      </Link>
                     </div>
 
                     <div className="nav-mega-divider" />
@@ -184,10 +186,15 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
                       <div className="nav-mega-header">Modules</div>
                       <div className="nav-mega-grid">
                         {moduleItems.map((m) => (
-                          <button
+                          <Link
                             key={m.label}
+                            href={`/platform#${m.sectionId}`}
                             className="nav-mega-item"
-                            onClick={() => handleNavClickWithScroll(m.page, m.sectionId)}
+                            onClick={() => {
+                              setMegaOpen(false);
+                              setMobileOpen(false);
+                              if (onNavigate) onNavigate(m.page, m.sectionId);
+                            }}
                           >
                             <span className="nav-mega-icon">
                               <ModuleIcon name={m.moduleName} size={20} />
@@ -196,7 +203,7 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
                               <div className="nav-mega-label">{m.label}</div>
                               <div className="nav-mega-desc">{m.desc}</div>
                             </span>
-                          </button>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -205,12 +212,13 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
               </div>
             ) : (
               <div className="nav-item" key={p.id}>
-                <button
-                  className={`nav-link ${activePage === p.id ? 'active' : ''}`}
-                  onClick={() => handleNavClick(p.id)}
+                <Link
+                  href={p.href}
+                  className={`nav-link ${isActive(p.id) ? 'active' : ''}`}
+                  onClick={() => handleNavClick(p.id, p.href)}
                 >
                   {p.label}
-                </button>
+                </Link>
               </div>
             )
           )}
@@ -246,13 +254,14 @@ export default function Navigation({ activePage, onNavigate }: NavigationProps) 
 
       <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`}>
         {pages.map((p) => (
-          <button
+          <Link
             key={p.id}
-            className={`mobile-link ${activePage === p.id ? 'active' : ''}`}
-            onClick={() => handleNavClick(p.id)}
+            href={p.href}
+            className={`mobile-link ${isActive(p.id) ? 'active' : ''}`}
+            onClick={() => handleNavClick(p.id, p.href)}
           >
             {p.label}
-          </button>
+          </Link>
         ))}
         <div className="mobile-divider" />
         <a

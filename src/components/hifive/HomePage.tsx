@@ -5,7 +5,6 @@ import { useReveal } from '@/hooks/useReveal';
 import { useCounters } from '@/hooks/useCounters';
 import TestimonialsCarousel from './TestimonialsCarousel';
 import PartnerLogos from './PartnerLogos';
-import ResourcesSection from './ResourcesSection';
 import LiveActivityFeed from './LiveActivityFeed';
 import ModuleIcon, { ModuleName } from './ModuleIcons';
 import HiAIConsoleDemo from './HiAIConsoleDemo';
@@ -158,25 +157,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
 
 
-  // Frag converge animation
-  const convergeRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = convergeRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+
 
   const checkSvg = (
     <svg viewBox="0 0 12 12" fill="none">
@@ -223,25 +204,14 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <div className="frag-text reveal-left">
               <div className="eyebrow">The Problem</div>
               <h2>
-                Your data is <em>everywhere.</em><br />
-                Your answers are <em>nowhere.</em>
+                Make your systems <em>talk.</em><br />
+                Let your intelligence <em>compound.</em>
               </h2>
               <p>Modern organizations suffer from profound <strong>information fragmentation</strong>. Recruiting operates in one system. Payroll in another. Finance in a third. Operations in a fourth. Legal in a fifth.</p>
               <p>The fundamental problem is not missing data. The problem is <strong>fragmented intelligence</strong>. Leadership spends enormous time collecting information before they can make a single decision.</p>
               <p>Companies do not buy recruiting software; they buy faster hiring. They do not buy dashboards; they buy clarity. They do not buy AI; they buy better decisions.</p>
             </div>
-            <div className="reveal-right">
-              <div className="frag-silos stagger">
-                <div className="frag-silo red"><div className="frag-silo-icon">🎯</div><div className="frag-silo-name">Recruiting ATS</div><div className="frag-silo-desc">Candidate data locked in a silo. No connection to payroll or budget.</div><div className="frag-silo-status">Disconnected</div></div>
-                <div className="frag-silo amber"><div className="frag-silo-icon">💸</div><div className="frag-silo-name">Payroll System</div><div className="frag-silo-desc">No visibility into unbudgeted hires or contractor overtime.</div><div className="frag-silo-status amber-s">Partial</div></div>
-                <div className="frag-silo blue"><div className="frag-silo-icon">📊</div><div className="frag-silo-name">HRIS / HR Platform</div><div className="frag-silo-desc">Lifecycle events don&apos;t propagate to IT or Finance.</div><div className="frag-silo-status">Disconnected</div></div>
-                <div className="frag-silo purple"><div className="frag-silo-icon">⚙️</div><div className="frag-silo-name">Ops &amp; IT Tools</div><div className="frag-silo-desc">Asset tracking, provisioning, and workspace data isolated.</div><div className="frag-silo-status">Disconnected</div></div>
-              </div>
-              <div className="frag-converge" ref={convergeRef}>
-                <div className="frag-converge-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M6 12l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
-                <div className="frag-converge-box"><span className="frag-converge-box-icon">⬡</span><span className="frag-converge-box-text">Unified into <span>HiFive AI</span></span></div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
@@ -319,9 +289,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
       {/* TESTIMONIALS CAROUSEL */}
       <TestimonialsCarousel />
-
-      {/* RESOURCES & BLOG */}
-      <ResourcesSection />
 
       {/* PERSONA QUICK LINKS */}
       <section className="personas-strip" id="personas">

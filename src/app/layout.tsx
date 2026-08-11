@@ -16,11 +16,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "HiFive AI: The AI-Native People Operating System",
+  metadataBase: new URL("https://www.hifiveai.co"),
+  title: "HiFiveAI: AI-Native People Operating System",
   description:
-    "Make informed data backed decisions like never before. HiFive AI connects every people-related function - hiring, payroll, compliance, operations - into one continuously learning system.",
+    "HiFiveAI connects hiring, people, payroll, global workforce, and operations through one AI intelligence layer for faster, data-backed workforce decisions.",
   keywords: [
-    "HiFive AI",
+    "HiFiveAI",
     "People Operating System",
     "HR",
     "Payroll",
@@ -31,31 +32,34 @@ export const metadata: Metadata = {
     "Global Payroll",
     "HRIS",
   ],
-  authors: [{ name: "HiFive AI" }],
-  creator: "HiFive AI",
+  authors: [{ name: "HiFiveAI" }],
+  creator: "HiFiveAI",
+  alternates: {
+    canonical: "https://www.hifiveai.co/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://hifiveai.co",
-    siteName: "HiFive AI",
-    title: "HiFive AI: The AI-Native People Operating System",
+    url: "https://www.hifiveai.co/",
+    siteName: "HiFiveAI",
+    title: "HiFiveAI: AI-Native People Operating System",
     description:
-      "Make informed data backed decisions like never before. Five interconnected modules. One continuously learning intelligence layer.",
+      "HiFiveAI connects hiring, people, payroll, global workforce, and operations through one AI intelligence layer for faster, data-backed workforce decisions.",
     images: [
       {
-        url: "https://hifiveai.co/og-image.png",
+        url: "https://www.hifiveai.co/og-image.png",
         width: 1200,
         height: 630,
-        alt: "HiFive AI: People Operating System",
+        alt: "HiFiveAI: AI-Native People Operating System",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HiFive AI: The AI-Native People Operating System",
+    title: "HiFiveAI: AI-Native People Operating System",
     description:
-      "Five interconnected modules. One continuously learning intelligence layer.",
-    images: ["https://hifiveai.co/og-image.png"],
+      "HiFiveAI connects hiring, people, payroll, global workforce, and operations through one AI intelligence layer for faster, data-backed workforce decisions.",
+    images: ["https://www.hifiveai.co/og-image.png"],
   },
   robots: {
     index: true,
@@ -69,11 +73,11 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "HiFive AI",
-  url: "https://hifiveai.co",
-  logo: "https://hifiveai.co/logo.svg",
+  name: "HiFiveAI",
+  url: "https://www.hifiveai.co/",
+  logo: "https://www.hifiveai.co/logo.svg",
   description:
-    "The AI-native People Operating System that connects every people-related function - hiring, payroll, compliance, operations - into one continuously learning system.",
+    "HiFiveAI connects hiring, people, payroll, global workforce, and operations through one AI intelligence layer for faster, data-backed workforce decisions.",
   sameAs: [
     "https://linkedin.com/company/hifiveai",
     "https://twitter.com/hifiveai",
@@ -89,11 +93,11 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "HiFive AI",
-  url: "https://hifiveai.co",
+  name: "HiFiveAI",
+  url: "https://www.hifiveai.co/",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://hifiveai.co/?q={search_term_string}",
+    target: "https://www.hifiveai.co/?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };

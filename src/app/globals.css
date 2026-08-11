@@ -514,6 +514,7 @@ footer{background:var(--ink);color:var(--white);padding:72px var(--px) 44px}
 .frag-section{position:relative;padding:120px var(--px);overflow:hidden;background:linear-gradient(160deg,var(--ink) 0%,#1a140a 40%,var(--ink) 100%)}
 .frag-inner{position:relative;z-index:1;max-width:var(--max-w);margin:0 auto}
 .frag-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.frag-grid:has(> :only-child){grid-template-columns:1fr;max-width:800px;margin:0 auto}
 .frag-text h2{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.035em;color:var(--white);line-height:1.1;margin-bottom:24px}
 .frag-text h2 em{font-style:normal;color:var(--gold)}
 .frag-text p{font-size:15px;color:rgba(255,255,255,.45);line-height:1.8;margin-bottom:16px}
