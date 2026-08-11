@@ -1,0 +1,846 @@
+/* ============================================================
+   SuccessStories — scoped styles
+   Prefix: success-
+   Light mode default; html.dark overrides below.
+   Responsive: ≤860px (tabs horizontal scroll), ≤640px (tighter)
+   ============================================================ */
+
+/* ---------- Section ---------- */
+.success-section {
+  padding: 96px var(--px) 88px;
+  background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.success-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  pointer-events: none;
+}
+.success-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Header ---------- */
+.success-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+.success-header h2 {
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 14px 0 18px;
+  color: var(--ink);
+}
+.success-header h2 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+.success-header p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+/* ---------- Layout: tabs + detail panel ---------- */
+.success-layout {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* ---------- Vertical tab list ---------- */
+.success-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: calc(var(--nav-h) + 16px);
+  align-self: start;
+}
+.success-tab {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-md);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--ink-2);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s,
+    background 0.3s,
+    color 0.3s,
+    box-shadow 0.3s;
+}
+.success-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(176, 125, 46, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.success-tab:hover {
+  border-color: var(--border-2);
+  transform: translateX(2px);
+  color: var(--ink);
+}
+.success-tab:hover::before {
+  opacity: 1;
+}
+.success-tab:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.success-tab.active {
+  background: var(--white);
+  border-color: var(--border-2);
+  border-left: 3px solid var(--gold);
+  box-shadow: 0 8px 24px rgba(176, 125, 46, 0.10);
+  color: var(--ink);
+}
+.success-tab.active::before {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(176, 125, 46, 0.10) 0%, transparent 60%);
+}
+
+.success-tab-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+  width: 22px;
+  transition: color 0.3s ease;
+}
+.success-tab.active .success-tab-index {
+  color: var(--gold);
+}
+
+.success-tab-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.success-tab-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-2);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+.success-tab.active .success-tab-name {
+  color: var(--gold);
+}
+.success-tab-meta {
+  font-size: 11.5px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.success-tab-arrow {
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+}
+.success-tab:hover .success-tab-arrow,
+.success-tab.active .success-tab-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.success-tab.active .success-tab-arrow {
+  color: var(--gold);
+}
+
+/* ---------- Detail panel + card ---------- */
+.success-panel {
+  min-width: 0;
+}
+.success-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 36px 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(24, 20, 15, 0.04);
+  animation: successCardFadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* Decorative gold corner accent */
+.success-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(225deg, rgba(176, 125, 46, 0.12) 0%, rgba(176, 125, 46, 0) 65%);
+  pointer-events: none;
+}
+/* Top gold accent line */
+.success-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+  opacity: 0.7;
+}
+
+@keyframes successCardFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Card head: logo + name + badges ---------- */
+.success-card-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.success-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold) 100%);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  box-shadow:
+    0 6px 18px rgba(176, 125, 46, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+html.dark .success-logo {
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold) 100%);
+  box-shadow:
+    0 6px 18px rgba(229, 184, 90, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.success-card-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.success-card-name {
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0;
+}
+.success-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: var(--gold-bg);
+  border: 1px solid rgba(176, 125, 46, 0.25);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+html.dark .success-badge {
+  background: rgba(229, 184, 90, 0.10);
+  border-color: rgba(229, 184, 90, 0.30);
+  color: var(--gold-2);
+}
+
+/* ---------- Metrics grid ---------- */
+.success-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 22px 18px;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  position: relative;
+  z-index: 1;
+}
+html.dark .success-metrics {
+  background: linear-gradient(180deg, rgba(40, 35, 26, 0.6) 0%, rgba(33, 28, 21, 0.6) 100%);
+}
+.success-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  position: relative;
+}
+.success-metric + .success-metric::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: var(--border);
+}
+.success-metric-num {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-variant-numeric: tabular-nums;
+}
+html.dark .success-metric-num {
+  background: linear-gradient(135deg, #E5B85A 0%, var(--gold-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.success-metric-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+/* ---------- Narrative ---------- */
+.success-narrative {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0 0 18px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Read full case study link ---------- */
+.success-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s ease, gap 0.25s ease;
+}
+.success-read-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.4;
+  transform: scaleX(0.6);
+  transform-origin: left;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.success-read-link:hover {
+  color: var(--gold-2);
+  gap: 12px;
+}
+.success-read-link:hover::after {
+  transform: scaleX(1);
+  opacity: 0.8;
+}
+.success-read-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ---------- Quote ---------- */
+.success-quote {
+  margin: 24px 0 0;
+  padding: 22px 24px 22px 28px;
+  background: linear-gradient(135deg, rgba(176, 125, 46, 0.08) 0%, rgba(176, 125, 46, 0.03) 100%);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  position: relative;
+  z-index: 1;
+}
+html.dark .success-quote {
+  background: linear-gradient(135deg, rgba(229, 184, 90, 0.10) 0%, rgba(229, 184, 90, 0.04) 100%);
+}
+.success-quote-icon {
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 8px;
+  display: block;
+}
+.success-quote-text {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 0 14px;
+  letter-spacing: 0.005em;
+}
+.success-quote-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.success-quote-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.01em;
+}
+.success-quote-title {
+  font-size: 12px;
+  color: var(--mid);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Aggregate stats banner ---------- */
+.success-aggregate {
+  margin-top: 56px;
+  padding: 28px 28px 30px;
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+html.dark .success-aggregate {
+  background: linear-gradient(135deg, #211C15 0%, #18140F 100%);
+  border: 1px solid var(--border-2);
+}
+.success-aggregate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+}
+.success-aggregate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 70% at 0% 50%, rgba(176, 125, 46, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 100% 50%, rgba(176, 125, 46, 0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+html.dark .success-aggregate::after {
+  background:
+    radial-gradient(ellipse 50% 70% at 0% 50%, rgba(229, 184, 90, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 100% 50%, rgba(229, 184, 90, 0.08) 0%, transparent 60%);
+}
+.success-aggregate-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(245, 240, 232, 0.62);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 22px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+html.dark .success-aggregate-title {
+  color: var(--ink-3);
+}
+.success-aggregate-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.success-aggregate-stat {
+  text-align: center;
+  padding: 4px 8px;
+  position: relative;
+}
+.success-aggregate-stat + .success-aggregate-stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background: rgba(245, 240, 232, 0.10);
+}
+html.dark .success-aggregate-stat + .success-aggregate-stat::before {
+  background: var(--border-2);
+}
+.success-aggregate-stat-value {
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--gold-light);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+html.dark .success-aggregate-stat-value {
+  color: #E5B85A;
+}
+.success-aggregate-stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(245, 240, 232, 0.72);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+html.dark .success-aggregate-stat-label {
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   Responsive: ≤860px — tabs become horizontal scroll, card stacks
+   ============================================================ */
+@media (max-width: 860px) {
+  .success-section {
+    padding: 72px var(--px) 64px;
+  }
+  .success-header {
+    margin-bottom: 36px;
+  }
+  .success-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .success-tabs {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 2px 6px;
+    gap: 10px;
+  }
+  .success-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .success-tab {
+    flex: 0 0 auto;
+    min-width: 200px;
+    scroll-snap-align: start;
+    padding: 12px 14px;
+    border-left: 1px solid var(--border);
+    border-top: 3px solid transparent;
+  }
+  .success-tab.active {
+    border-left: 1px solid var(--border-2);
+    border-top: 3px solid var(--gold);
+  }
+  .success-tab-arrow {
+    display: none;
+  }
+  .success-card {
+    padding: 28px 24px 24px;
+  }
+  .success-card-name {
+    font-size: 22px;
+  }
+  .success-logo {
+    width: 52px;
+    height: 52px;
+    font-size: 16px;
+  }
+  .success-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 12px;
+    padding: 18px 14px;
+  }
+  .success-metric + .success-metric::before {
+    display: none;
+  }
+  .success-metric:nth-child(odd)::after {
+    /* subtle divider for visual rhythm in 2-col */
+    content: none;
+  }
+  .success-aggregate {
+    margin-top: 40px;
+    padding: 24px 20px;
+  }
+  .success-aggregate-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 12px;
+  }
+  .success-aggregate-stat + .success-aggregate-stat::before {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Responsive: ≤640px — mobile tightening
+   ============================================================ */
+@media (max-width: 640px) {
+  .success-section {
+    padding: 56px var(--px) 56px;
+  }
+  .success-header {
+    margin-bottom: 28px;
+  }
+  .success-header h2 {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+  .success-header p {
+    font-size: 14px;
+  }
+  .success-tab {
+    min-width: 170px;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .success-tab-index {
+    font-size: 10px;
+    width: 18px;
+  }
+  .success-tab-name {
+    font-size: 13.5px;
+  }
+  .success-tab-meta {
+    font-size: 10.5px;
+  }
+  .success-card {
+    padding: 22px 18px 20px;
+  }
+  .success-card-head {
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .success-card-name {
+    font-size: 20px;
+  }
+  .success-logo {
+    width: 46px;
+    height: 46px;
+    font-size: 14px;
+  }
+  .success-badge {
+    font-size: 10.5px;
+    padding: 3px 8px;
+  }
+  .success-metrics {
+    padding: 16px 10px;
+    gap: 16px 8px;
+    margin-bottom: 22px;
+  }
+  .success-metric-num {
+    font-size: 24px;
+  }
+  .success-metric-label {
+    font-size: 10.5px;
+  }
+  .success-narrative {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .success-read-link {
+    font-size: 13px;
+  }
+  .success-quote {
+    padding: 18px 18px 18px 20px;
+    margin-top: 20px;
+  }
+  .success-quote-text {
+    font-size: 14px;
+  }
+  .success-aggregate {
+    margin-top: 32px;
+    padding: 20px 16px;
+  }
+  .success-aggregate-title {
+    font-size: 11px;
+    margin-bottom: 18px;
+  }
+  .success-aggregate-stat-value {
+    font-size: 26px;
+  }
+  .success-aggregate-stat-label {
+    font-size: 11px;
+  }
+}
+
+/* ============================================================
+   Dark mode overrides
+   ============================================================ */
+html.dark .success-section {
+  background: linear-gradient(180deg, var(--white) 0%, var(--cream) 100%);
+  border-top-color: var(--border);
+}
+html.dark .success-section::before {
+  background: linear-gradient(90deg, transparent, var(--gold-2), transparent);
+}
+html.dark .success-header h2 {
+  color: var(--ink);
+}
+html.dark .success-header p {
+  color: var(--ink-3);
+}
+html.dark .success-tab {
+  background: var(--white);
+  border-color: var(--border);
+  color: var(--ink-2);
+}
+html.dark .success-tab:hover {
+  border-color: var(--border-2);
+  color: var(--ink);
+}
+html.dark .success-tab.active {
+  background: var(--white);
+  border-color: var(--border-2);
+  border-left-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(229, 184, 90, 0.10);
+}
+html.dark .success-tab::before {
+  background: linear-gradient(135deg, rgba(229, 184, 90, 0.06) 0%, transparent 60%);
+}
+html.dark .success-tab.active::before {
+  background: linear-gradient(135deg, rgba(229, 184, 90, 0.10) 0%, transparent 60%);
+}
+html.dark .success-tab-index {
+  color: var(--ink-3);
+}
+html.dark .success-tab.active .success-tab-index {
+  color: var(--gold-2);
+}
+html.dark .success-tab-name {
+  color: var(--ink-2);
+}
+html.dark .success-tab.active .success-tab-name {
+  color: var(--gold-2);
+}
+html.dark .success-tab-meta {
+  color: var(--ink-3);
+}
+html.dark .success-tab-arrow {
+  color: var(--ink-3);
+}
+html.dark .success-tab.active .success-tab-arrow {
+  color: var(--gold-2);
+}
+html.dark .success-card {
+  background: var(--white);
+  border-color: var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+html.dark .success-card::before {
+  background: linear-gradient(225deg, rgba(229, 184, 90, 0.18) 0%, rgba(229, 184, 90, 0) 65%);
+}
+html.dark .success-card-name {
+  color: var(--ink);
+}
+html.dark .success-metric-label {
+  color: var(--ink-3);
+}
+html.dark .success-narrative {
+  color: var(--ink-2);
+}
+html.dark .success-read-link {
+  color: var(--gold-2);
+}
+html.dark .success-read-link:hover {
+  color: var(--gold);
+}
+html.dark .success-quote-text {
+  color: var(--ink);
+}
+html.dark .success-quote-name {
+  color: var(--gold-2);
+}
+html.dark .success-quote-title {
+  color: var(--ink-3);
+}
+
+/* ============================================================
+   Reduced motion: disable animations
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .success-tab,
+  .success-tab-arrow,
+  .success-tab-index,
+  .success-tab-name,
+  .success-tab::before,
+  .success-read-link,
+  .success-read-link::after {
+    transition: none !important;
+  }
+  .success-card {
+    animation: none !important;
+  }
+  .success-tab:hover {
+    transform: none !important;
+  }
+}

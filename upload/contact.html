@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — HiFive AI</title>
+<meta name="description" content="Get in touch with HiFive AI. Sales, Support, Press, and Partnership inquiries — routed to the right team instantly.">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+<style>
+/* ── Contact Hero ── */
+.contact-hero{position:relative;padding:calc(var(--nav-h) + 80px) var(--px) 80px;background:var(--ink);overflow:hidden;text-align:center}
+.contact-hero-glow{position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(176,125,46,.06) 0%,transparent 65%);pointer-events:none}
+.contact-hero h1{font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-.04em;color:var(--white);line-height:1.05;margin-bottom:20px}
+.contact-hero h1 em{font-style:normal;color:var(--gold)}
+.contact-hero p{font-size:17px;color:rgba(255,255,255,.4);max-width:580px;margin:0 auto;line-height:1.7}
+
+/* ── Routing Cards ── */
+.route-section{padding:120px var(--px);background:var(--white)}
+.route-inner{max-width:var(--max-w);margin:0 auto}
+.route-header{text-align:center;margin-bottom:64px}
+.route-header h2{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:16px}
+.route-header h2 em{font-style:normal;color:var(--gold)}
+.route-header p{font-size:16px;color:var(--mid);max-width:580px;margin:0 auto;line-height:1.7}
+.route-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.route-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.route-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-2));transform:scaleX(0);transform-origin:center;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.route-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(24,20,15,.08);border-color:var(--border-2)}
+.route-card:hover::before{transform:scaleX(1)}
+.route-card.active{background:var(--ink);border-color:var(--ink)}
+.route-card.active::before{transform:scaleX(1)}
+.route-card.active .route-icon{transform:scale(1.1)}
+.route-card.active .route-name{color:var(--white)}
+.route-card.active .route-desc{color:rgba(255,255,255,.4)}
+.route-icon{font-size:32px;margin-bottom:16px;transition:transform .3s}
+.route-name{font-size:16px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;transition:color .3s}
+.route-desc{font-size:13px;color:var(--muted);line-height:1.6;transition:color .3s}
+@media(max-width:860px){.route-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.route-grid{grid-template-columns:1fr}}
+
+/* ── Contact Form Area ── */
+.form-section{padding:0 var(--px) 120px;background:var(--white)}
+.form-inner{max-width:var(--max-w);margin:0 auto}
+.form-container{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.form-panel{display:none}
+.form-panel.active{display:block;animation:fadeIn .3s ease}
+.form-title{font-size:24px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.form-subtitle{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:32px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
+.form-input,.form-select,.form-textarea{width:100%;padding:12px 16px;font-family:var(--font-body);font-size:14px;color:var(--ink);background:var(--cream);border:1.5px solid var(--border);border-radius:var(--radius-md);transition:all .2s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(176,125,46,.1)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--muted)}
+.form-textarea{min-height:120px;resize:vertical;line-height:1.6}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23988E84' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:16px;padding:14px 16px;background:var(--cream);border-radius:var(--radius-md)}
+.form-success{display:none;text-align:center;padding:60px 32px}
+.form-success.visible{display:block;animation:fadeIn .4s ease}
+.form-success-icon{font-size:48px;margin-bottom:16px}
+.form-success h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.form-success p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ── Contact Sidebar ── */
+.contact-sidebar{position:sticky;top:calc(var(--nav-h) + 24px)}
+.contact-sidebar-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 24px;margin-bottom:20px}
+.contact-sidebar-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.contact-sidebar-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.contact-sidebar-item:last-child{margin-bottom:0}
+.contact-sidebar-icon{width:32px;height:32px;border-radius:var(--radius-sm);background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.contact-sidebar-label{font-size:12px;color:var(--muted);margin-bottom:2px}
+.contact-sidebar-val{font-size:14px;font-weight:600;color:var(--ink)}
+.contact-sidebar-val a{color:var(--gold);transition:opacity .15s}
+.contact-sidebar-val a:hover{opacity:.7}
+.contact-geo-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.contact-geo-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--mid);transition:all .2s}
+.contact-geo-chip:hover{border-color:var(--gold);color:var(--ink)}
+@media(max-width:860px){.form-container{grid-template-columns:1fr}.contact-sidebar{position:static;order:-1}}
+
+/* ── FAQ ── */
+.faq-section{padding:120px var(--px);background:var(--cream)}
+.faq-inner{max-width:var(--max-w);margin:0 auto}
+.faq-header{text-align:center;margin-bottom:64px}
+.faq-header h2{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:16px}
+.faq-header h2 em{font-style:normal;color:var(--gold)}
+.faq-list{max-width:740px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.01em;transition:color .15s;gap:16px}
+.faq-q:hover{color:var(--gold)}
+.faq-q-icon{width:24px;height:24px;border-radius:50%;background:var(--cream-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .3s}
+.faq-q-icon svg{width:12px;height:12px;color:var(--mid);transition:color .3s}
+.faq-item.open .faq-q{color:var(--gold)}
+.faq-item.open .faq-q-icon{transform:rotate(45deg);background:var(--gold-bg)}
+.faq-item.open .faq-q-icon svg{color:var(--gold)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}
+.faq-a-inner{padding:0 0 20px;font-size:14px;color:var(--mid);line-height:1.75}
+</style>
+</head>
+<body>
+
+<!-- ═══ CONTACT HERO ═══ -->
+<section class="contact-hero">
+  <div class="contact-hero-glow"></div>
+  <div style="position:relative;z-index:1">
+    <div class="eyebrow reveal">Contact</div>
+    <h1 class="reveal d1">Let's talk about<br><em>your operation.</em></h1>
+    <p class="reveal d2">Every inquiry is routed to the correct department. No generic forms. No black holes. Just the right person, ready to help.</p>
+  </div>
+</section>
+
+<!-- ═══ ROUTING CARDS ═══ -->
+<section class="route-section">
+  <div class="route-inner">
+    <div class="route-header">
+      <div class="eyebrow reveal">How Can We Help?</div>
+      <h2 class="reveal d1">Select your <em>inquiry type.</em></h2>
+      <p class="reveal d2">We route your message directly to the specialist team. No general inbox. No delays.</p>
+    </div>
+    <div class="route-grid stagger" id="routeGrid">
+      <div class="route-card active" data-route="sales">
+        <div class="route-icon">💬</div>
+        <div class="route-name">Sales</div>
+        <div class="route-desc">Demo requests, pricing, and implementation timelines</div>
+      </div>
+      <div class="route-card" data-route="support">
+        <div class="route-icon">🛠️</div>
+        <div class="route-name">Support</div>
+        <div class="route-desc">Technical issues, feature requests, and bug reports</div>
+      </div>
+      <div class="route-card" data-route="press">
+        <div class="route-icon">📰</div>
+        <div class="route-name">Press</div>
+        <div class="route-desc">Media inquiries, interview requests, and brand assets</div>
+      </div>
+      <div class="route-card" data-route="partnerships">
+        <div class="route-icon">🤝</div>
+        <div class="route-name">Partnerships</div>
+        <div class="route-desc">EOR partnerships, integration partners, and consulting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FORMS ═══ -->
+<section class="form-section">
+  <div class="form-inner">
+    <div class="form-container">
+      <!-- Sales Form -->
+      <div class="form-panel active" id="form-sales">
+        <div class="form-title">Book a Demo</div>
+        <div class="form-subtitle">See HiFive AI through the lens of your specific role and challenges. 30 minutes. No slides — live product.</div>
+        <form id="salesForm" onsubmit="return handleForm(event,'sales')">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Jane" required></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Smith" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Work Email</label><input class="form-input" type="email" placeholder="jane@company.com" required></div>
+          <div class="form-group"><label class="form-label">Company Name</label><input class="form-input" type="text" placeholder="Acme Corp" required></div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Company Size</label><select class="form-select" required><option value="">Select range</option><option>5–20 employees</option><option>21–50 employees</option><option>51–150 employees</option><option>151–500 employees</option><option>500+ employees</option></select></div>
+            <div class="form-group"><label class="form-label">Your Role</label><select class="form-select" required><option value="">Select role</option><option>CEO / Founder</option><option>CFO / Finance</option><option>CHRO / HR Leader</option><option>COO / Operations</option><option>VP / Director</option><option>Recruiter</option><option>IT / Engineering</option><option>Other</option></select></div>
+          </div>
+          <div class="form-group"><label class="form-label">What's your biggest people operations challenge?</label><textarea class="form-textarea" placeholder="Tell us about the specific problem you're trying to solve..."></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Request Demo →</button>
+          <div class="form-note">You'll receive a calendar link within 2 business hours. No sales pressure — just a focused product walkthrough tailored to your role.</div>
+        </form>
+        <div class="form-success" id="success-sales">
+          <div class="form-success-icon">✅</div>
+          <h3>Demo Request Received</h3>
+          <p>We'll send you a calendar link within 2 business hours. In the meantime, explore the <a href="platform.html" style="color:var(--gold)">platform</a> or read about <a href="solutions.html" style="color:var(--gold)">solutions for your role</a>.</p>
+        </div>
+      </div>
+
+      <!-- Support Form -->
+      <div class="form-panel" id="form-support">
+        <div class="form-title">Technical Support</div>
+        <div class="form-subtitle">Existing customer? We respond within 4 hours during business hours. Include as much detail as possible.</div>
+        <form id="supportForm" onsubmit="return handleForm(event,'support')">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" placeholder="Your name" required></div>
+            <div class="form-group"><label class="form-label">Company</label><input class="form-input" type="text" placeholder="Company name" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@company.com" required></div>
+          <div class="form-group"><label class="form-label">Category</label><select class="form-select" required><option value="">Select category</option><option>Bug Report</option><option>Feature Request</option><option>Integration Issue</option><option>Payroll Question</option><option>Compliance Question</option><option>Account / Access</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" placeholder="Please describe the issue in detail. Include steps to reproduce, expected vs. actual behavior, and any relevant screenshots." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Submit Ticket →</button>
+          <div class="form-note">For urgent issues (payroll failures, access lockouts), email <a href="mailto:support@hifiveai.co" style="color:var(--gold)">support@hifiveai.co</a> directly with "URGENT" in the subject line.</div>
+        </form>
+        <div class="form-success" id="success-support">
+          <div class="form-success-icon">🎫</div>
+          <h3>Ticket Submitted</h3>
+          <p>Our support team will respond within 4 business hours. You'll receive a confirmation email with your ticket number.</p>
+        </div>
+      </div>
+
+      <!-- Press Form -->
+      <div class="form-panel" id="form-press">
+        <div class="form-title">Press & Media</div>
+        <div class="form-subtitle">For media inquiries, interview requests, speaking engagements, and brand asset requests.</div>
+        <form id="pressForm" onsubmit="return handleForm(event,'press')">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="Full name" required></div>
+            <div class="form-group"><label class="form-label">Publication</label><input class="form-input" type="text" placeholder="Publication name" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@publication.com" required></div>
+          <div class="form-group"><label class="form-label">Deadline</label><input class="form-input" type="date"></div>
+          <div class="form-group"><label class="form-label">Inquiry Details</label><textarea class="form-textarea" placeholder="What are you working on? What perspective or information do you need?" required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Submit Inquiry →</button>
+          <div class="form-note">For brand assets (logos, screenshots, executive headshots), visit our press kit. For urgent deadline requests, mark your deadline above and we'll prioritize accordingly.</div>
+        </form>
+        <div class="form-success" id="success-press">
+          <div class="form-success-icon">📰</div>
+          <h3>Inquiry Received</h3>
+          <p>Our communications team will respond within 1 business day. For deadline-sensitive requests, we'll prioritize accordingly.</p>
+        </div>
+      </div>
+
+      <!-- Partnerships Form -->
+      <div class="form-panel" id="form-partnerships">
+        <div class="form-title">Partnership Program</div>
+        <div class="form-subtitle">EOR partnerships, implementation consulting, integration development, and channel partnerships.</div>
+        <form id="partnersForm" onsubmit="return handleForm(event,'partnerships')">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="Full name" required></div>
+            <div class="form-group"><label class="form-label">Company</label><input class="form-input" type="text" placeholder="Company name" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@company.com" required></div>
+          <div class="form-group"><label class="form-label">Partnership Type</label><select class="form-select" required><option value="">Select type</option><option>EOR Partner</option><option>Implementation Consultant</option><option>Integration / API Partner</option><option>Channel / Reseller</option><option>Technology Alliance</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Tell us about your business and proposed partnership</label><textarea class="form-textarea" placeholder="What geography do you cover? What's your customer base? How would a partnership create mutual value?" required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Submit Proposal →</button>
+          <div class="form-note">All partnership proposals are reviewed by our business development team. Qualified proposals receive a response within 5 business days with next steps.</div>
+        </form>
+        <div class="form-success" id="success-partnerships">
+          <div class="form-success-icon">🤝</div>
+          <h3>Proposal Received</h3>
+          <p>Our partnerships team will review your proposal and respond within 5 business days with next steps or follow-up questions.</p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="contact-sidebar">
+        <div class="contact-sidebar-card">
+          <div class="contact-sidebar-title">Direct Contact</div>
+          <div class="contact-sidebar-item">
+            <div class="contact-sidebar-icon">✉️</div>
+            <div><div class="contact-sidebar-label">General Inquiries</div><div class="contact-sidebar-val"><a href="mailto:hello@hifiveai.co">hello@hifiveai.co</a></div></div>
+          </div>
+          <div class="contact-sidebar-item">
+            <div class="contact-sidebar-icon">🎯</div>
+            <div><div class="contact-sidebar-label">Sales</div><div class="contact-sidebar-val"><a href="mailto:sales@hifiveai.co">sales@hifiveai.co</a></div></div>
+          </div>
+          <div class="contact-sidebar-item">
+            <div class="contact-sidebar-icon">🛠️</div>
+            <div><div class="contact-sidebar-label">Support</div><div class="contact-sidebar-val"><a href="mailto:support@hifiveai.co">support@hifiveai.co</a></div></div>
+          </div>
+          <div class="contact-sidebar-item">
+            <div class="contact-sidebar-icon">🤝</div>
+            <div><div class="contact-sidebar-label">Partnerships</div><div class="contact-sidebar-val"><a href="mailto:partners@hifiveai.co">partners@hifiveai.co</a></div></div>
+          </div>
+        </div>
+        <div class="contact-sidebar-card">
+          <div class="contact-sidebar-title">Book Directly</div>
+          <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:12px">Book on Cal.com →</a>
+          <p style="font-size:12px;color:var(--muted);line-height:1.5;text-align:center">Skip the form. Pick a time directly on our calendar. 30-minute product walkthrough.</p>
+        </div>
+        <div class="contact-sidebar-card">
+          <div class="contact-sidebar-title">Global Presence</div>
+          <div class="contact-geo-grid">
+            <span class="contact-geo-chip">🇦🇪 Dubai</span>
+            <span class="contact-geo-chip">🇬🇧 London</span>
+            <span class="contact-geo-chip">🇸🇬 Singapore</span>
+            <span class="contact-geo-chip">🇮🇳 Mumbai</span>
+            <span class="contact-geo-chip">🇺🇸 San Francisco</span>
+          </div>
+        </div>
+        <div class="contact-sidebar-card">
+          <div class="contact-sidebar-title">Connect</div>
+          <div class="contact-sidebar-item">
+            <div class="contact-sidebar-icon">💼</div>
+            <div><div class="contact-sidebar-val"><a href="https://linkedin.com/company/hifiveai" target="_blank">LinkedIn</a></div></div>
+          </div>
+          <div class="contact-sidebar-item">
+            <div class="contact-sidebar-icon">🌐</div>
+            <div><div class="contact-sidebar-val"><a href="https://hifiveai.co" target="_blank">hifiveai.co</a></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="eyebrow reveal">Frequently Asked</div>
+      <h2 class="reveal d1">Questions we get <em>before the demo.</em></h2>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What makes HiFive AI different from an ATS like Greenhouse or Lever?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">An ATS is a data silo that manages one function: recruiting. HiFive AI is a People Operating System where Talent Acquisition is one of nine interconnected modules. When you open a requisition in HiFive, it validates budget against HiPay in real-time. When you hire someone, their candidate profile converts exactly into their employee profile in People Lifecycle — zero data re-entry. Ask AI reasons across recruiting, payroll, and operations simultaneously to answer questions no ATS can touch.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How long does implementation take?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">For organizations under 150 employees, typical implementation is 4–6 weeks. This includes data migration from existing systems, SSO configuration, workflow customization, and manager training. For enterprise deployments with multiple entities and complex compliance requirements, 8–12 weeks. We provide a dedicated implementation specialist — not a self-serve portal.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Do you replace our existing payroll provider, or integrate with it?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Both. For countries where we have native payroll processing (150+ countries), we replace the provider. For specialized cases where you must retain a local provider (e.g., France with complex social charges), we integrate bidirectionally — HiFive remains the system of record, and the local provider handles disbursement. Either way, you see all payroll data in one dashboard.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What does "Ask AI" actually do? Is it just ChatGPT wrapped in your UI?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">No. Ask AI is a reasoning engine that translates natural language into multi-table database queries across your organization's actual data. When you ask "Why is payroll 12% over budget in London?", it doesn't generate text — it queries HiTalent (unbudgeted hires), HiOps (contractor overtime), and HiPay (GBP/USD fluctuations), then synthesizes a data-backed answer with specific numbers. It can also take actions: posting jobs, scheduling interviews, generating documents, and approving requests — with supervised autonomy.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How does pricing work?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Pricing is based on headcount and the number of entities/countries you operate in. We don't charge per module — you get the entire platform. We also don't charge per seat for employees (only for admin/manager users). The goal is to make the TCO comparison against your current stack of 5+ tools obviously favorable. Book a demo and we'll provide a precise quote within 24 hours.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is the platform suitable for companies under 20 employees?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. HiFive AI is designed for companies between 5 and 150 employees who are outgrowing early processes — the moment when founders realize they're spending too much time collecting information instead of making decisions. The platform scales with you: you don't need to migrate to a "bigger" system as you grow. The same architecture that serves a 20-person startup serves a 500-person multi-entity enterprise.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What security certifications do you have?</span>
+          <span class="faq-q-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">SOC 2 Type II (all five Trust Service Criteria), ISO 27001, GDPR and CCPA compliance. Data at rest encrypted with AES-256, data in transit with TLS 1.3. Row-level security enforced at the database layer — not application-level filtering. SAML 2.0 and OIDC SSO. Immutable, tamper-proof audit logs. Automated offboarding that revokes access across all systems instantly. See our <a href="platform.html#security" style="color:var(--gold)">full security baseline</a>.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="noise"></div>
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="eyebrow reveal">Prefer a Calendar?</div>
+    <h2 class="reveal d1">Skip the form.<br>Book directly.</h2>
+    <p class="reveal d2">Pick a 30-minute slot on our calendar. We'll tailor the demo to your specific role, challenges, and current tech stack.</p>
+    <div class="cta-buttons reveal d3">
+      <a href="https://cal.com/hifiveai" target="_blank" class="btn btn-gold btn-lg pulse">Open Cal.com →</a>
+      <a href="mailto:hello@hifiveai.co" class="btn btn-outline-light btn-lg">hello@hifiveai.co</a>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+<script>
+/* ── Route Tab Switching ── */
+document.addEventListener('DOMContentLoaded', function() {
+  buildNav('contact');
+  buildFooter();
+  initReveal();
+
+  var routeCards = document.querySelectorAll('.route-card');
+  var formPanels = document.querySelectorAll('.form-panel');
+
+  routeCards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      var route = this.dataset.route;
+      routeCards.forEach(function(c) { c.classList.remove('active'); });
+      formPanels.forEach(function(p) { p.classList.remove('active'); });
+      this.classList.add('active');
+      var target = document.getElementById('form-' + route);
+      if (target) {
+        target.classList.add('active');
+        target.querySelector('form').style.display = '';
+        var success = document.getElementById('success-' + route);
+        if (success) success.classList.remove('visible');
+      }
+    });
+  });
+
+  /* ── GSAP ── */
+  function waitForGSAP() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') { setTimeout(waitForGSAP, 60); return; }
+    gsap.registerPlugin(ScrollTrigger);
+    if (typeof Lenis !== 'undefined') {
+      var lenis = new Lenis({ lerp: 0.07, smoothWheel: true, wheelMultiplier: 0.9 });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function(t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+    gsap.from('.form-panel.active', { x: 30, opacity: 0, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: '.form-section', start: 'top 70%' } });
+    gsap.from('.contact-sidebar-card', { y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.contact-sidebar', start: 'top 75%' } });
+    gsap.from('.faq-item', { y: 15, opacity: 0, duration: 0.4, stagger: 0.05, ease: 'power3.out', scrollTrigger: { trigger: '#faqList', start: 'top 80%' } });
+    gsap.from('.cta-inner > *', { y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: '.cta-inner', start: 'top 80%' } });
+    ScrollTrigger.refresh();
+  }
+  waitForGSAP();
+
+  var hash = window.location.hash;
+  if (hash) { var el = document.querySelector(hash); if (el) setTimeout(function() { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 500); }
+});
+
+/* ── Form Handler ── */
+function handleForm(e, type) {
+  e.preventDefault();
+  var form = document.getElementById(type + 'Form');
+  var success = document.getElementById('success-' + type);
+  if (form && success) {
+    form.style.display = 'none';
+    success.classList.add('visible');
+  }
+  return false;
+}
+
+/* ── FAQ Toggle ── */
+function toggleFaq(el) {
+  var item = el.parentElement;
+  var answer = item.querySelector('.faq-a');
+  var isOpen = item.classList.contains('open');
+
+  /* Close all */
+  document.querySelectorAll('.faq-item').forEach(function(fi) {
+    fi.classList.remove('open');
+    var a = fi.querySelector('.faq-a');
+    if (a) a.style.maxHeight = '0';
+  });
+
+  /* Open clicked (if it was closed) */
+  if (!isOpen && answer) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+</script>
+</body>
+</html>

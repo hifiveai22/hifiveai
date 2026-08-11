@@ -1,0 +1,767 @@
+/* ============================================================
+   CompetitorComparison — HiFive AI vs BambooHR / Workday / Deel / Rippling
+   Scoped under .cmp-* prefix · light + dark mode · responsive
+   ============================================================ */
+
+/* ── Section shell ──────────────────────────────── */
+.cmp-section{
+  background:var(--cream);
+  padding:96px var(--px) 88px;
+  position:relative;
+  overflow:hidden;
+}
+.cmp-section::before{
+  content:'';
+  position:absolute;
+  top:-200px;
+  right:-160px;
+  width:520px;
+  height:520px;
+  background:radial-gradient(circle,rgba(176,125,46,.07) 0%,transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+.cmp-inner{
+  max-width:var(--max-w);
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+
+/* ── Header ────────────────────────────────────── */
+.cmp-header{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 36px;
+}
+.cmp-header h2{
+  font-family:var(--font-display);
+  font-size:clamp(28px,4.4vw,46px);
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.1;
+  color:var(--ink);
+  margin-bottom:18px;
+}
+.cmp-header h2 em{
+  font-style:normal;
+  background:linear-gradient(90deg,var(--gold) 0%,var(--gold-2) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:var(--gold);
+}
+.cmp-header p{
+  font-size:16px;
+  color:var(--mid);
+  line-height:1.65;
+}
+
+/* ── Controls row (toggle + legend) ─────────────── */
+.cmp-controls{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:24px;
+  padding:16px 20px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-sm);
+}
+
+/* Toggle switch */
+.cmp-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  user-select:none;
+}
+.cmp-toggle-input{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+.cmp-toggle-track{
+  position:relative;
+  width:42px;
+  height:24px;
+  background:var(--border);
+  border-radius:999px;
+  transition:background .22s cubic-bezier(.16,1,.3,1);
+  flex-shrink:0;
+}
+.cmp-toggle-thumb{
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:18px;
+  height:18px;
+  background:var(--white);
+  border-radius:50%;
+  box-shadow:0 1px 4px rgba(0,0,0,.18);
+  transition:transform .24s cubic-bezier(.16,1,.3,1);
+}
+.cmp-toggle-input:checked + .cmp-toggle-track{
+  background:linear-gradient(90deg,var(--gold) 0%,var(--gold-2) 100%);
+}
+.cmp-toggle-input:checked + .cmp-toggle-track .cmp-toggle-thumb{
+  transform:translateX(18px);
+}
+.cmp-toggle-input:focus-visible + .cmp-toggle-track{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
+.cmp-toggle-label{
+  font-size:14px;
+  font-weight:500;
+  color:var(--ink);
+}
+
+/* Legend */
+.cmp-legend{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:18px;
+}
+.cmp-legend-item{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:12.5px;
+  color:var(--mid);
+  font-weight:500;
+}
+
+/* ── Symbols ────────────────────────────────────── */
+.cmp-symbol{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  font-size:13px;
+  font-weight:700;
+  line-height:1;
+  flex-shrink:0;
+}
+.cmp-symbol-check{
+  background:rgba(34,197,94,.12);
+  color:var(--green);
+}
+.cmp-symbol-partial{
+  background:rgba(212,137,26,.14);
+  color:var(--amber);
+}
+.cmp-symbol-x{
+  background:rgba(239,68,68,.10);
+  color:var(--red);
+}
+/* HiFive column symbol gets a gold accent ring */
+.cmp-symbol.cmp-symbol-hi{
+  box-shadow:0 0 0 1.5px rgba(176,125,46,.45);
+}
+
+/* ── Table wrapper ──────────────────────────────── */
+.cmp-table-wrap{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-md);
+  overflow:hidden;
+  position:relative;
+}
+/* Custom scrollbar (desktop only — mobile uses native horizontal scroll) */
+.cmp-table-wrap::-webkit-scrollbar{
+  height:8px;
+}
+.cmp-table-wrap::-webkit-scrollbar-track{
+  background:var(--cream);
+}
+.cmp-table-wrap::-webkit-scrollbar-thumb{
+  background:var(--gold);
+  border-radius:4px;
+}
+
+/* ── Table ──────────────────────────────────────── */
+.cmp-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  table-layout:fixed;
+  font-feature-settings:'tnum' 1,'ss01' 1;
+}
+.cmp-table th,
+.cmp-table td{
+  padding:14px 14px;
+  text-align:center;
+  vertical-align:middle;
+  border-bottom:1px solid var(--border);
+  font-size:13.5px;
+}
+.cmp-table thead th{
+  position:sticky;
+  top:0;
+  z-index:3;
+  background:var(--ink);
+  color:var(--white);
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.01em;
+  padding-top:18px;
+  padding-bottom:18px;
+  border-bottom:2px solid var(--gold);
+}
+.cmp-table thead th:first-child{
+  text-align:left;
+  padding-left:22px;
+  border-top-left-radius:var(--radius-lg);
+}
+
+/* Corner header */
+.cmp-corner span{
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* Column headers */
+.cmp-col-header{
+  min-width:140px;
+  text-align:center;
+}
+.cmp-vendor-name{
+  display:block;
+  font-family:var(--font-display);
+  font-size:15px;
+  font-weight:600;
+  color:var(--white);
+  letter-spacing:-.01em;
+}
+.cmp-recommend-badge{
+  display:inline-block;
+  margin-top:8px;
+  padding:3px 10px;
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);
+  border-radius:999px;
+  box-shadow:0 2px 8px rgba(176,125,46,.3);
+}
+
+/* ── HiFive column dominance ─────────────────────── */
+.cmp-hifive-col{
+  position:relative;
+  background:linear-gradient(180deg,rgba(176,125,46,.10) 0%,rgba(176,125,46,.04) 100%);
+  box-shadow:inset 2px 0 0 var(--gold),inset -2px 0 0 var(--gold);
+}
+.cmp-table thead .cmp-hifive-col{
+  background:linear-gradient(180deg,#241c13 0%,#15110c 100%);
+  box-shadow:inset 2px 0 0 var(--gold),inset -2px 0 0 var(--gold),0 8px 28px rgba(176,125,46,.25);
+  z-index:4;
+}
+.cmp-table thead .cmp-hifive-col .cmp-vendor-name{
+  display:block;
+  color:var(--gold-2);
+  font-size:16px;
+  font-weight:700;
+  transform:scale(1.06);
+  transform-origin:center;
+  text-shadow:0 0 18px rgba(176,125,46,.45);
+}
+
+/* ── Category accordion row ──────────────────────── */
+.cmp-cat-row{
+  cursor:pointer;
+  transition:background .18s ease;
+}
+.cmp-cat-row:hover{
+  background:rgba(176,125,46,.04);
+}
+.cmp-cat-row:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:-2px;
+}
+.cmp-cat-cell{
+  text-align:left !important;
+  padding:14px 22px !important;
+  background:var(--cream-2);
+  border-bottom:1px solid var(--border) !important;
+  border-top:1px solid var(--border);
+}
+.cmp-cat-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  margin-right:12px;
+  font-size:15px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  vertical-align:middle;
+}
+.cmp-cat-label{
+  font-family:var(--font-display);
+  font-size:13.5px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--ink);
+  vertical-align:middle;
+  margin-right:12px;
+}
+.cmp-cat-count{
+  display:inline-block;
+  padding:2px 9px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--mid);
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:999px;
+  vertical-align:middle;
+}
+.cmp-cat-chevron{
+  float:right;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold);
+  transition:transform .28s cubic-bezier(.16,1,.3,1);
+  margin-top:4px;
+}
+.cmp-cat-chevron.is-collapsed{
+  transform:rotate(-90deg);
+}
+
+/* ── Data rows ──────────────────────────────────── */
+.cmp-row{
+  transition:background .18s ease;
+}
+.cmp-row:hover{
+  background:rgba(176,125,46,.035);
+}
+.cmp-row:hover .cmp-hifive-col{
+  background:linear-gradient(180deg,rgba(176,125,46,.16) 0%,rgba(176,125,46,.08) 100%);
+}
+.cmp-row:last-child td{
+  border-bottom:none;
+}
+
+.cmp-feature-cell{
+  text-align:left !important;
+  padding-left:22px !important;
+  font-weight:500;
+  color:var(--ink);
+  font-size:13.5px;
+  background:var(--cream);
+}
+.cmp-row:hover .cmp-feature-cell{
+  background:var(--cream-2);
+}
+
+.cmp-cell{
+  color:var(--ink-2);
+}
+
+/* Cell content layout */
+.cmp-cell-icon{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  line-height:1.25;
+}
+.cmp-cell-icon-label{
+  font-size:11px;
+  font-weight:500;
+  color:var(--mid);
+  letter-spacing:.01em;
+}
+.cmp-cell-text{
+  display:inline-block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.cmp-cell-text-hi{
+  color:var(--gold);
+  font-weight:700;
+}
+
+/* ── Footer row ─────────────────────────────────── */
+.cmp-table tfoot .cmp-footer-row td{
+  background:var(--cream-2);
+  border-top:2px solid var(--border-2);
+  border-bottom:none;
+  padding-top:16px;
+  padding-bottom:16px;
+}
+.cmp-footer-label{
+  text-align:left !important;
+  padding-left:22px !important;
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--mid);
+}
+.cmp-footer-cell{
+  font-size:12px;
+  font-weight:500;
+  color:var(--mid);
+  line-height:1.4;
+}
+.cmp-table tfoot .cmp-footer-row .cmp-hifive-col{
+  background:linear-gradient(180deg,rgba(176,125,46,.16) 0%,rgba(176,125,46,.08) 100%);
+}
+.cmp-table tfoot .cmp-footer-row .cmp-hifive-col.cmp-footer-cell{
+  color:var(--ink);
+  font-weight:600;
+}
+.cmp-table tfoot .cmp-footer-row td:last-child{
+  border-bottom-right-radius:var(--radius-lg);
+}
+
+/* ── CTA ────────────────────────────────────────── */
+.cmp-cta{
+  margin-top:36px;
+  text-align:center;
+}
+.cmp-cta-btn{
+  font-size:15px;
+  font-weight:600;
+  padding:15px 32px;
+}
+.cmp-cta-note{
+  margin-top:14px;
+  font-size:13px;
+  color:var(--mid);
+}
+
+
+/* ════════════════════════════════════════════════
+   DARK MODE OVERRIDES
+   ════════════════════════════════════════════════ */
+html.dark .cmp-section{
+  background:var(--cream);
+}
+html.dark .cmp-section::before{
+  background:radial-gradient(circle,rgba(176,125,46,.10) 0%,transparent 70%);
+}
+html.dark .cmp-header h2{
+  color:var(--ink);
+}
+html.dark .cmp-header p{
+  color:var(--mid);
+}
+
+html.dark .cmp-controls{
+  background:var(--cream-2);
+  border-color:var(--border);
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+html.dark .cmp-toggle-label{
+  color:var(--ink);
+}
+html.dark .cmp-toggle-track{
+  background:var(--border-2);
+}
+
+html.dark .cmp-table-wrap{
+  background:var(--cream-2);
+  border-color:var(--border);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+}
+html.dark .cmp-table-wrap::-webkit-scrollbar-track{
+  background:var(--cream);
+}
+
+html.dark .cmp-table th,
+html.dark .cmp-table td{
+  border-bottom-color:var(--border);
+}
+html.dark .cmp-table thead th{
+  background:var(--ink);
+  border-bottom-color:var(--gold);
+}
+html.dark .cmp-corner span{
+  color:var(--muted);
+}
+html.dark .cmp-vendor-name{
+  color:var(--white);
+}
+
+html.dark .cmp-symbol-check{
+  background:rgba(34,197,94,.16);
+  color:var(--green);
+}
+html.dark .cmp-symbol-partial{
+  background:rgba(212,137,26,.18);
+  color:var(--amber);
+}
+html.dark .cmp-symbol-x{
+  background:rgba(239,68,68,.14);
+  color:var(--red);
+}
+
+html.dark .cmp-cat-row:hover{
+  background:rgba(176,125,46,.06);
+}
+html.dark .cmp-cat-cell{
+  background:var(--cream-3);
+  border-top-color:var(--border);
+  border-bottom-color:var(--border) !important;
+}
+html.dark .cmp-cat-icon{
+  background:var(--cream-2);
+  border-color:var(--border);
+}
+html.dark .cmp-cat-label{
+  color:var(--ink);
+}
+html.dark .cmp-cat-count{
+  color:var(--mid);
+  background:var(--cream-2);
+  border-color:var(--border);
+}
+
+html.dark .cmp-row:hover{
+  background:rgba(176,125,46,.05);
+}
+html.dark .cmp-row:hover .cmp-hifive-col{
+  background:linear-gradient(180deg,rgba(176,125,46,.20) 0%,rgba(176,125,46,.10) 100%);
+}
+html.dark .cmp-feature-cell{
+  background:var(--cream);
+  color:var(--ink);
+}
+html.dark .cmp-row:hover .cmp-feature-cell{
+  background:var(--cream-3);
+}
+html.dark .cmp-cell{
+  color:var(--ink-2);
+}
+html.dark .cmp-cell-icon-label{
+  color:var(--mid);
+}
+html.dark .cmp-cell-text{
+  color:var(--ink);
+}
+html.dark .cmp-cell-text-hi{
+  color:var(--gold-2);
+}
+
+html.dark .cmp-table tfoot .cmp-footer-row td{
+  background:var(--cream-3);
+  border-top-color:var(--border-2);
+}
+html.dark .cmp-footer-label{
+  color:var(--mid);
+}
+html.dark .cmp-footer-cell{
+  color:var(--mid);
+}
+html.dark .cmp-table tfoot .cmp-footer-row .cmp-hifive-col{
+  background:linear-gradient(180deg,rgba(176,125,46,.22) 0%,rgba(176,125,46,.12) 100%);
+}
+html.dark .cmp-table tfoot .cmp-footer-row .cmp-hifive-col.cmp-footer-cell{
+  color:var(--ink);
+}
+
+html.dark .cmp-cta-note{
+  color:var(--mid);
+}
+
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE — Horizontal scroll + sticky first column
+   ════════════════════════════════════════════════ */
+
+/* ≤860px — wrap becomes horizontally scrollable, first column sticky */
+@media (max-width:860px){
+  .cmp-section{
+    padding:72px var(--px) 64px;
+  }
+  .cmp-table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:var(--radius-md);
+  }
+  .cmp-table{
+    min-width:880px;
+  }
+  .cmp-table th,
+  .cmp-table td{
+    padding:12px 12px;
+  }
+  .cmp-table thead th{
+    position:sticky;
+    top:0;
+  }
+
+  /* Sticky first column */
+  .cmp-corner,
+  .cmp-feature-cell,
+  .cmp-cat-cell{
+    position:sticky;
+    left:0;
+    z-index:2;
+  }
+  .cmp-corner{
+    z-index:5; /* above HiFive col header */
+  }
+  .cmp-feature-cell{
+    box-shadow:6px 0 12px -6px rgba(24,20,15,.18);
+  }
+  .cmp-cat-cell{
+    box-shadow:6px 0 12px -6px rgba(24,20,15,.18);
+    z-index:3;
+  }
+  /* When the cat-cell spans all columns, it shouldn't be sticky */
+  .cmp-cat-cell{
+    position:static;
+    box-shadow:none;
+  }
+
+  .cmp-col-header{
+    min-width:130px;
+  }
+  .cmp-vendor-name{
+    font-size:13.5px;
+  }
+}
+
+/* ≤640px — tighter padding, smaller symbols */
+@media (max-width:640px){
+  .cmp-section{
+    padding:56px 16px 56px;
+  }
+  .cmp-header{
+    margin-bottom:24px;
+  }
+  .cmp-header h2{
+    font-size:clamp(24px,6vw,32px);
+  }
+  .cmp-header p{
+    font-size:14px;
+  }
+
+  .cmp-controls{
+    flex-direction:column;
+    align-items:stretch;
+    gap:14px;
+    padding:14px 16px;
+  }
+  .cmp-legend{
+    justify-content:center;
+    gap:14px;
+  }
+  .cmp-legend-item{
+    font-size:11.5px;
+  }
+
+  .cmp-table{
+    min-width:760px;
+  }
+  .cmp-table th,
+  .cmp-table td{
+    padding:10px 10px;
+    font-size:12.5px;
+  }
+  .cmp-cat-cell{
+    padding:12px 16px !important;
+  }
+  .cmp-cat-label{
+    font-size:12px;
+  }
+  .cmp-cat-icon{
+    width:24px;
+    height:24px;
+    font-size:13px;
+  }
+  .cmp-feature-cell{
+    padding-left:16px !important;
+    font-size:12.5px;
+  }
+  .cmp-symbol{
+    width:20px;
+    height:20px;
+    font-size:12px;
+  }
+  .cmp-cell-icon-label{
+    font-size:10px;
+  }
+  .cmp-cell-text{
+    font-size:12px;
+  }
+  .cmp-vendor-name{
+    font-size:12.5px;
+  }
+  .cmp-recommend-badge{
+    font-size:8.5px;
+    padding:2px 8px;
+    margin-top:6px;
+  }
+  .cmp-footer-cell{
+    font-size:11px;
+  }
+
+  .cmp-cta-btn{
+    width:100%;
+    max-width:340px;
+  }
+}
+
+/* ≤420px — minimal padding */
+@media (max-width:420px){
+  .cmp-section{
+    padding:48px 12px 48px;
+  }
+  .cmp-table{
+    min-width:680px;
+  }
+}
+
+
+/* ════════════════════════════════════════════════
+   REDUCED MOTION
+   ════════════════════════════════════════════════ */
+@media (prefers-reduced-motion:reduce){
+  .cmp-toggle-track,
+  .cmp-toggle-thumb,
+  .cmp-cat-row,
+  .cmp-row,
+  .cmp-cat-chevron,
+  .cmp-table thead .cmp-hifive-col .cmp-vendor-name{
+    transition:none !important;
+    transform:none !important;
+  }
+  .cmp-cat-chevron.is-collapsed{
+    transform:rotate(-90deg) !important;
+  }
+  html.dark .cmp-section::before{
+    animation:none !important;
+  }
+}

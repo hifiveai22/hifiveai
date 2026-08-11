@@ -1,0 +1,337 @@
+/* ================================================================
+   ScrollTypography — Harvey.ai-inspired scroll-driven typography
+   ================================================================ */
+
+/* ── Section container ── */
+.scroll-typo-section {
+  position: relative;
+  padding: 0;
+  min-height: 400vh; /* enough scroll distance for 7 items */
+  background: #fafafa;
+}
+
+.scroll-typo-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Sticky viewport — stays pinned while user scrolls through headings */
+.scroll-typo-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Two-column layout ── */
+.scroll-typo-layout {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  height: 100%;
+  padding: 4rem 0;
+}
+
+/* Left column — heading stack */
+.scroll-typo-heading-col {
+  flex: 1 1 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  min-height: 0;
+}
+
+/* Right column — preview card */
+.scroll-typo-preview-col {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 0;
+}
+
+/* ── Heading items ── */
+.scroll-typo-heading {
+  position: relative;
+  padding: 1.6rem 0;
+  margin: 0;
+  font-size: clamp(1.35rem, 2.8vw, 2.6rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  opacity: 0.15;
+  color: #1a1a1a;
+  cursor: default;
+  transition:
+    opacity 0.6s cubic-bezier(.22, 1, .36, 1),
+    font-weight 0.6s cubic-bezier(.22, 1, .36, 1),
+    transform 0.6s cubic-bezier(.22, 1, .36, 1),
+    color 0.6s cubic-bezier(.22, 1, .36, 1);
+  transform: scale(1);
+  will-change: opacity, transform;
+  user-select: none;
+}
+
+/* Adjacent heading (±1) */
+.scroll-typo-heading--adjacent {
+  opacity: 0.4;
+  font-weight: 400;
+}
+
+/* Active heading */
+.scroll-typo-heading--active {
+  opacity: 1;
+  font-weight: 800;
+  transform: scale(1.02);
+  color: #111;
+}
+
+/* Active heading gold accent bar */
+.scroll-typo-heading--active::before {
+  content: '';
+  position: absolute;
+  left: -1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #c9a84c, #b8922e);
+  transition:
+    opacity 0.6s cubic-bezier(.22, 1, .36, 1),
+    height 0.6s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Hide accent bar on non-active headings */
+.scroll-typo-heading::before {
+  content: '';
+  position: absolute;
+  left: -1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 0%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #c9a84c, #b8922e);
+  opacity: 0;
+  transition:
+    opacity 0.6s cubic-bezier(.22, 1, .36, 1),
+    height 0.6s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ── Preview card ── */
+.scroll-typo-preview-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(12px);
+  opacity: 0;
+  pointer-events: none;
+  width: min(400px, 90%);
+  padding: 2rem 2.2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04);
+  transition:
+    opacity 0.6s cubic-bezier(.22, 1, .36, 1),
+    transform 0.6s cubic-bezier(.22, 1, .36, 1),
+    box-shadow 0.6s cubic-bezier(.22, 1, .36, 1),
+    border-color 0.6s cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, transform;
+}
+
+/* Active preview card */
+.scroll-typo-preview-card--active {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
+  pointer-events: auto;
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(201, 168, 76, 0.18);
+}
+
+/* Preview card — emoji/icon */
+.scroll-typo-preview-icon {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+  display: block;
+  transition: transform 0.4s cubic-bezier(.22, 1, .36, 1);
+}
+
+.scroll-typo-preview-card--active .scroll-typo-preview-icon {
+  transform: scale(1.08);
+}
+
+/* Preview card — description */
+.scroll-typo-preview-desc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #555;
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+
+/* Preview card — learn more link */
+.scroll-typo-preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #b8922e;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition:
+    color 0.3s ease,
+    gap 0.3s ease;
+  cursor: pointer;
+}
+
+.scroll-typo-preview-link:hover {
+  color: #9a7a22;
+  gap: 0.6rem;
+}
+
+.scroll-typo-preview-link:focus-visible {
+  outline: 2px solid #c9a84c;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.scroll-typo-preview-link-arrow {
+  font-size: 0.72rem;
+  transition: transform 0.3s ease;
+}
+
+.scroll-typo-preview-link:hover .scroll-typo-preview-link-arrow {
+  transform: translateX(2px);
+}
+
+/* ── Progress indicator (thin line on right edge) ── */
+.scroll-typo-progress {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 1px;
+}
+
+.scroll-typo-progress-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #c9a84c, #b8922e);
+  border-radius: 1px;
+  transition: height 0.3s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ── Responsive — mobile ── */
+@media (max-width: 768px) {
+  .scroll-typo-section {
+    min-height: 350vh;
+  }
+
+  .scroll-typo-inner {
+    padding: 0 1rem;
+  }
+
+  .scroll-typo-sticky {
+    height: auto;
+    min-height: 100vh;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .scroll-typo-layout {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 0 3rem;
+  }
+
+  .scroll-typo-heading-col {
+    flex: none;
+    align-items: center;
+    text-align: center;
+  }
+
+  .scroll-typo-preview-col {
+    flex: none;
+    min-height: 260px;
+  }
+
+  .scroll-typo-heading {
+    font-size: clamp(1.15rem, 4vw, 1.6rem);
+    padding: 1rem 0;
+  }
+
+  .scroll-typo-heading--active::before {
+    left: -0.8rem;
+  }
+
+  .scroll-typo-heading::before {
+    left: -0.8rem;
+  }
+
+  .scroll-typo-preview-card {
+    width: min(340px, 95%);
+    padding: 1.4rem 1.6rem;
+  }
+
+  .scroll-typo-progress {
+    display: none;
+  }
+}
+
+/* ── Responsive — large desktop ── */
+@media (min-width: 1440px) {
+  .scroll-typo-inner {
+    max-width: 1360px;
+  }
+
+  .scroll-typo-heading {
+    font-size: clamp(1.6rem, 2.6vw, 3rem);
+  }
+
+  .scroll-typo-preview-card {
+    width: min(440px, 90%);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-typo-heading,
+  .scroll-typo-preview-card,
+  .scroll-typo-preview-icon,
+  .scroll-typo-preview-link,
+  .scroll-typo-preview-link-arrow,
+  .scroll-typo-progress-fill {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .scroll-typo-heading--active {
+    transform: none;
+  }
+
+  .scroll-typo-preview-card--active {
+    transform: translate(-50%, -50%);
+  }
+}

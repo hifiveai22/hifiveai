@@ -1,0 +1,41 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Generated files
+*.log
+*.tsbuildinfo
+.DS_Store
+
+# Local databases
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Local tooling / AI agent output
+tool-results/
+agent-ctx/
+
+# Development screenshots / QA artifacts
+download/
+*-screenshot.png
+*-check.png
+*-modal.png
+*-desktop.png
+*-scrolled.png
+/page2-articles.png
+page2-articles.png
+
+# Development screenshots / QA artifacts
+*.png
+!public/**/*.png
+/page2-articles.png
