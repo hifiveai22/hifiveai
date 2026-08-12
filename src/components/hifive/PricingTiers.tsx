@@ -25,7 +25,7 @@ const tiers: Tier[] = [
   {
     id: 'starter',
     name: 'Starter',
-    tagline: 'For seed-stage teams up to 50 employees consolidating their core HR stack.',
+    tagline: 'For growing teams consolidating their core HR stack.',
     monthlyPrice: 1200,
     annualPrice: 1080,
     priceSuffix: '/mo',
@@ -34,7 +34,6 @@ const tiers: Tier[] = [
     ctaHref: 'https://cal.com/hifiveai',
     highlighted: false,
     features: [
-      { label: 'Up to 50 employees', included: true },
       { label: '3 entities / countries', included: true },
       { label: 'HiTalent + HiPeople + HiPay modules', included: true },
       { label: 'Global payroll (5 countries included)', included: true },
@@ -51,7 +50,7 @@ const tiers: Tier[] = [
   {
     id: 'growth',
     name: 'Growth',
-    tagline: 'For mid-market companies (50–300 employees) scaling across multiple regions.',
+    tagline: 'For mid-market companies scaling across multiple regions.',
     monthlyPrice: 3800,
     annualPrice: 3420,
     priceSuffix: '/mo',
@@ -61,7 +60,6 @@ const tiers: Tier[] = [
     highlighted: true,
     badge: 'Most Popular',
     features: [
-      { label: 'Up to 300 employees', included: true },
       { label: '10 entities / countries', included: true },
       { label: 'All 5 modules + HiAI Intelligence Layer', included: true },
       { label: 'Global payroll (40 countries included)', included: true },
@@ -78,7 +76,7 @@ const tiers: Tier[] = [
   {
     id: 'enterprise',
     name: 'Enterprise',
-    tagline: 'For 300+ employees, complex entities, regulated industries, custom SLAs.',
+    tagline: 'For global organizations, complex entities, regulated industries, custom SLAs.',
     monthlyPrice: null,
     annualPrice: null,
     priceSuffix: '',
@@ -87,7 +85,6 @@ const tiers: Tier[] = [
     ctaHref: 'https://cal.com/hifiveai',
     highlighted: false,
     features: [
-      { label: 'Unlimited employees', included: true },
       { label: 'Unlimited entities / countries', included: true },
       { label: 'All 5 modules + custom integrations', included: true },
       { label: 'Global payroll (150+ countries)', included: true },

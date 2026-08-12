@@ -40,7 +40,6 @@ interface Plan {
   tagline: string;
   monthlyPrice: number | null;
   annualPrice: number | null;
-  employeeRange: string;
   cta: string;
   highlighted: boolean;
   badge?: string;
@@ -54,7 +53,6 @@ const PLANS: Plan[] = [
     tagline: 'For small teams getting started',
     monthlyPrice: 24,
     annualPrice: 18,
-    employeeRange: 'Up to 50 employees',
     cta: 'Start Free Trial',
     highlighted: false,
   },
@@ -64,7 +62,6 @@ const PLANS: Plan[] = [
     tagline: 'For scaling companies',
     monthlyPrice: 24,
     annualPrice: 18,
-    employeeRange: '50–500 employees',
     cta: 'Start Free Trial',
     highlighted: true,
     badge: 'Most Popular',
@@ -75,7 +72,6 @@ const PLANS: Plan[] = [
     tagline: 'For large global organizations',
     monthlyPrice: null,
     annualPrice: null,
-    employeeRange: '500+ employees',
     cta: 'Contact Sales',
     highlighted: false,
   },
@@ -180,14 +176,6 @@ const CATEGORIES: Category[] = [
     label: 'Global Operations',
     icon: '◉',
     rows: [
-      {
-        feature: 'Countries supported',
-        cells: [
-          { kind: 'text', label: '5' },
-          { kind: 'text', label: '40' },
-          { kind: 'text', label: '150+' },
-        ],
-      },
       {
         feature: 'Payroll runs / month',
         cells: [
@@ -389,10 +377,6 @@ function PlanCard({
       <div className="plan-matrix-card-name">{plan.name}</div>
       <div className="plan-matrix-card-tagline">{plan.tagline}</div>
 
-      <div className="plan-matrix-card-price-note">
-        {plan.employeeRange}
-      </div>
-
       <button
         type="button"
         className={`plan-matrix-card-cta ${plan.highlighted ? 'btn-gold' : 'plan-matrix-btn-outline'}`}
@@ -521,7 +505,6 @@ export default function PlanComparisonMatrix({ onNavigate }: PlanComparisonMatri
                         )}
                         <span className="plan-matrix-col-name">{p.name}</span>
 
-                        <span className="plan-matrix-col-range">{p.employeeRange}</span>
                         <span className="plan-matrix-col-cta-label">
                           Get started <ArrowRight size={11} />
                         </span>
