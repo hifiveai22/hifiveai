@@ -15,7 +15,7 @@ type PersonaId = 'ceo' | 'chro' | 'cfo' | 'coo' | 'legal' | 'it';
 type PageId = 'home' | 'platform' | 'solutions' | 'why' | 'contact' | 'resources';
 
 interface SolutionsPageProps {
-  onNavigate: (page: PageId) => void;
+  onNavigate: (page: PageId, sectionId?: string) => void;
 }
 
 export default function SolutionsPage({ onNavigate }: SolutionsPageProps) {
@@ -26,6 +26,26 @@ export default function SolutionsPage({ onNavigate }: SolutionsPageProps) {
   useEffect(() => {
     const timer = setTimeout(() => setHeroReady(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Sync active persona tab with URL hash
+  useEffect(() => {
+    const syncHash = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        const hash = window.location.hash.substring(1) as PersonaId;
+        const validPersonas: PersonaId[] = ['ceo', 'chro', 'cfo', 'coo', 'legal', 'it'];
+        if (validPersonas.includes(hash)) {
+          setActivePersona(hash);
+          setTimeout(() => {
+            const el = document.getElementById(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+        }
+      }
+    };
+    syncHash();
+    window.addEventListener('hashchange', syncHash);
+    return () => window.removeEventListener('hashchange', syncHash);
   }, []);
 
   // Funnel animation for CHRO section
@@ -58,6 +78,9 @@ export default function SolutionsPage({ onNavigate }: SolutionsPageProps) {
 
   const scrollToPersona = (id: PersonaId) => {
     setActivePersona(id);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `#${id}`);
+    }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };

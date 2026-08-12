@@ -7,12 +7,13 @@ import TestimonialsCarousel from './TestimonialsCarousel';
 import PartnerLogos from './PartnerLogos';
 import LiveActivityFeed from './LiveActivityFeed';
 import ModuleIcon, { ModuleName } from './ModuleIcons';
+import Link from 'next/link';
 import HiAIConsoleDemo from './HiAIConsoleDemo';
 
 type PageId = 'home' | 'platform' | 'solutions' | 'why' | 'contact' | 'resources';
 
 interface HomePageProps {
-  onNavigate: (page: PageId) => void;
+  onNavigate: (page: PageId, sectionId?: string) => void;
 }
 
 function AnimatedWord({
@@ -298,12 +299,12 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <p>Every role gets a tailored dashboard with specific KPIs and workflows.</p>
           </div>
           <div className="personas-grid stagger">
-            <button onClick={() => onNavigate('solutions')} className="persona-card"><div className="persona-card-icon">👔</div><div className="persona-card-name">CEO / Founder</div><div className="persona-card-desc">Growth, efficiency, culture</div></button>
-            <button onClick={() => onNavigate('solutions')} className="persona-card"><div className="persona-card-icon">👥</div><div className="persona-card-name">CHRO / HR</div><div className="persona-card-desc">Talent, retention, equity</div></button>
-            <button onClick={() => onNavigate('solutions')} className="persona-card"><div className="persona-card-icon">💰</div><div className="persona-card-name">CFO / Finance</div><div className="persona-card-desc">Payroll, forecasting, TCO</div></button>
-            <button onClick={() => onNavigate('solutions')} className="persona-card"><div className="persona-card-icon">⚙️</div><div className="persona-card-name">COO / Ops</div><div className="persona-card-desc">Workspace, assets, OKRs</div></button>
-            <button onClick={() => onNavigate('solutions')} className="persona-card"><div className="persona-card-icon">⚖️</div><div className="persona-card-name">Legal</div><div className="persona-card-desc">Compliance, visas, contracts</div></button>
-            <button onClick={() => onNavigate('solutions')} className="persona-card"><div className="persona-card-icon">🔐</div><div className="persona-card-name">IT / Security</div><div className="persona-card-desc">Provisioning, audit, SSO</div></button>
+            <Link href="/solutions#ceo" onClick={() => onNavigate('solutions', 'ceo')} className="persona-card"><div className="persona-card-icon">👔</div><div className="persona-card-name">CEO / Founder</div><div className="persona-card-desc">Growth, efficiency, culture</div></Link>
+            <Link href="/solutions#chro" onClick={() => onNavigate('solutions', 'chro')} className="persona-card"><div className="persona-card-icon">👥</div><div className="persona-card-name">CHRO / HR</div><div className="persona-card-desc">Talent, retention, equity</div></Link>
+            <Link href="/solutions#cfo" onClick={() => onNavigate('solutions', 'cfo')} className="persona-card"><div className="persona-card-icon">💰</div><div className="persona-card-name">CFO / Finance</div><div className="persona-card-desc">Payroll, forecasting, TCO</div></Link>
+            <Link href="/solutions#coo" onClick={() => onNavigate('solutions', 'coo')} className="persona-card"><div className="persona-card-icon">⚙️</div><div className="persona-card-name">COO / Ops</div><div className="persona-card-desc">Workspace, assets, OKRs</div></Link>
+            <Link href="/solutions#legal" onClick={() => onNavigate('solutions', 'legal')} className="persona-card"><div className="persona-card-icon">⚖️</div><div className="persona-card-name">Legal</div><div className="persona-card-desc">Compliance, visas, contracts</div></Link>
+            <Link href="/solutions#it" onClick={() => onNavigate('solutions', 'it')} className="persona-card"><div className="persona-card-icon">🔐</div><div className="persona-card-name">IT / Security</div><div className="persona-card-desc">Provisioning, audit, SSO</div></Link>
           </div>
         </div>
       </section>

@@ -5697,7 +5697,7 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px soli
 .stagger.visible .stats-banner-card:nth-child(6){transition-delay:.34s}
 
 /* Section anchor scroll offset (sticky nav) */
-#pricing,#roi,#tco{scroll-margin-top:80px}
+#pricing,#roi,#tco,#ceo,#chro,#cfo,#coo,#legal,#it{scroll-margin-top:80px}
 
 /* Article reader scrollbar */
 .article-reader-container::-webkit-scrollbar{width:6px}
