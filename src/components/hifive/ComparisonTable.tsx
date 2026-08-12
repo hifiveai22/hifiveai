@@ -8,6 +8,7 @@ type CellType = 'check' | 'x' | 'partial' | 'text';
 interface Cell {
   type: CellType;
   label: string;
+  href?: string;
 }
 
 interface Row {
@@ -38,13 +39,13 @@ const ROWS: Row[] = [
   },
   {
     criterion: 'Modules included',
-    hifive: { type: 'text', label: '6 unified' },
+    hifive: { type: 'text', label: '5 unified' },
     point: { type: 'text', label: '5–8 separate' },
     legacy: { type: 'text', label: '3–4' },
   },
   {
     criterion: 'Total cost (100 emp)',
-    hifive: { type: 'text', label: '$48K/yr' },
+    hifive: { type: 'text', label: 'Ask for quote', href: 'https://cal.com/hifiveai' },
     point: { type: 'text', label: '$120–180K/yr' },
     legacy: { type: 'text', label: '$80–150K/yr' },
   },
@@ -94,6 +95,15 @@ const ROWS: Row[] = [
 
 function CellContent({ cell }: { cell: Cell }) {
   if (cell.type === 'text') {
+    if (cell.href) {
+      return (
+        <span className="comparison-icon">
+          <a href={cell.href} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
+            {cell.label} →
+          </a>
+        </span>
+      );
+    }
     return <span className="comparison-icon">{cell.label}</span>;
   }
 

@@ -541,19 +541,7 @@ export default function PlatformPage({ onNavigate }: PlatformPageProps) {
         </div>
       </section>
 
-      {/* SECURITY STRIP */}
-      <section className="sec-section">
-        <div className="sec-inner reveal">
-          <div className="sec-badges">
-            <div className="sec-badge"><div className="sec-badge-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 1L3 5v5c0 5.25 3 10.15 7 11.5C14 20.15 17 15.25 17 10V5l-7-4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><path d="M7 10l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></div>SOC 2 Type II</div>
-            <div className="sec-badge"><div className="sec-badge-icon"><svg viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" /><path d="M6 7V5a4 4 0 018 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg></div>ISO 27001</div>
-            <div className="sec-badge"><div className="sec-badge-icon"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5" /><path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></div>GDPR / CCPA</div>
-            <div className="sec-badge"><div className="sec-badge-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><path d="M4 9h12M9 4v12" stroke="currentColor" strokeWidth="1.5" /></svg></div>Row-Level Security</div>
-            <div className="sec-badge"><div className="sec-badge-icon"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v5c0 5 3 9.5 7 11 4-1.5 7-6 7-11V6l-7-4z" stroke="currentColor" strokeWidth="1.5" /><path d="M10 7v3m0 3h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg></div>Zero-Trust Architecture</div>
-          </div>
-          <div className="sec-cta-text">Bank-grade security for your most sensitive data.<br /><a href="#">Read our security whitepaper →</a></div>
-        </div>
-      </section>
+
 
       {/* IMPLEMENTATION TIMELINE */}
       <ImplementationTimeline />

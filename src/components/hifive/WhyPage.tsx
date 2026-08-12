@@ -136,7 +136,7 @@ export default function WhyPage({ onNavigate }: WhyPageProps) {
                 <tr><td style={{ fontWeight: 600 }}>AI / Analytics</td><td><div className="tco-tools"><span className="tco-tool">ChatGPT Enterprise - $30/seat/mo</span><span className="tco-tool">Tableau - $15K/yr</span></div></td><td className="tco-hi">Included</td></tr>
                 <tr><td style={{ fontWeight: 600 }}>Cross-Module Reasoning</td><td><span className="tco-x">Impossible</span></td><td className="tco-check">Native</td></tr>
                 <tr><td style={{ fontWeight: 600 }}>Single Source of Truth</td><td><span className="tco-x">Impossible</span></td><td className="tco-check">Cryptographic</td></tr>
-                <tr className="tco-highlight"><td style={{ fontSize: '16px' }}>Estimated Annual Cost</td><td style={{ fontSize: '16px', color: 'var(--red)' }}>$120K–$180K+</td><td className="tco-hi">Ask for quote</td></tr>
+                <tr className="tco-highlight"><td style={{ fontSize: '16px' }}>Estimated Annual Cost</td><td style={{ fontSize: '16px', color: 'var(--red)' }}>$120K–$180K+</td><td className="tco-hi"><a href="https://cal.com/hifiveai" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Ask for quote →</a></td></tr>
                 <tr className="tco-highlight"><td style={{ fontSize: '16px' }}>Hidden Costs</td><td style={{ fontSize: '14px', color: 'var(--red)' }}>Reconciliation, errors, delays, security gaps, shadow IT</td><td style={{ fontSize: '14px', color: 'var(--green)' }}>None - one system, one truth</td></tr>
               </tbody>
             </table>

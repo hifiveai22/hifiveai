@@ -35,14 +35,6 @@ interface Category {
 /* ── Vendor meta ──────────────────────────────────── */
 const VENDORS = ['HiFive AI', 'BambooHR', 'Workday', 'Deel', 'Rippling'] as const;
 
-const VENDOR_TAGLINES: string[] = [
-  'AI-native orgs consolidating their stack',
-  'SMBs under 200 employees · US-focused',
-  'Large enterprises with HCM budgets',
-  'Global contractor & EOR operations',
-  'IT + HR unified for US teams',
-];
-
 /* ── Comparison data ──────────────────────────────── */
 const CATEGORIES: Category[] = [
   {
@@ -280,53 +272,6 @@ const CATEGORIES: Category[] = [
       },
     ],
   },
-  {
-    id: 'pricing',
-    label: 'Pricing',
-    icon: '💳',
-    rows: [
-      {
-        feature: 'Starting price',
-        cells: [
-          { kind: 'text', label: '$2,000/mo' },
-          { kind: 'text', label: '$99/mo' },
-          { kind: 'text', label: 'Enterprise only' },
-          { kind: 'text', label: '$49/contractor/mo' },
-          { kind: 'text', label: '$8/user/mo' },
-        ],
-      },
-      {
-        feature: 'Per-employee cost',
-        cells: [
-          { kind: 'text', label: '$12/employee' },
-          { kind: 'text', label: '$5–9/employee' },
-          { kind: 'text', label: '$20–35/employee' },
-          { kind: 'text', label: '$49/contractor' },
-          { kind: 'text', label: '$8–15/user' },
-        ],
-      },
-      {
-        feature: 'Implementation fee',
-        cells: [
-          { kind: 'text', label: 'Included' },
-          { kind: 'text', label: 'Included' },
-          { kind: 'text', label: '$50K–$500K' },
-          { kind: 'text', label: 'None' },
-          { kind: 'text', label: 'Included' },
-        ],
-      },
-      {
-        feature: 'Time-to-live',
-        cells: [
-          { kind: 'text', label: '2–4 weeks' },
-          { kind: 'text', label: '1–2 weeks' },
-          { kind: 'text', label: '6–18 months' },
-          { kind: 'text', label: '1–3 days' },
-          { kind: 'text', label: '2–4 weeks' },
-        ],
-      },
-    ],
-  },
 ];
 
 /* ── Helpers ──────────────────────────────────────── */
@@ -552,19 +497,7 @@ export default function CompetitorComparison({ onNavigate }: CompetitorCompariso
                 );
               })}
             </tbody>
-            <tfoot>
-              <tr className="cmp-footer-row">
-                <td className="cmp-footer-label">Best for</td>
-                {VENDOR_TAGLINES.map((t, i) => (
-                  <td
-                    key={i}
-                    className={i === 0 ? 'cmp-hifive-col cmp-footer-cell' : 'cmp-footer-cell'}
-                  >
-                    {t}
-                  </td>
-                ))}
-              </tr>
-            </tfoot>
+
           </table>
         </div>
 
