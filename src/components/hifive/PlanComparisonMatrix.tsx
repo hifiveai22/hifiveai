@@ -53,7 +53,7 @@ const PLANS: Plan[] = [
     tagline: 'For small teams getting started',
     monthlyPrice: 24,
     annualPrice: 18,
-    cta: 'Start Free Trial',
+    cta: 'Contact Sales',
     highlighted: false,
   },
   {
@@ -62,7 +62,7 @@ const PLANS: Plan[] = [
     tagline: 'For scaling companies',
     monthlyPrice: 24,
     annualPrice: 18,
-    cta: 'Start Free Trial',
+    cta: 'Contact Sales',
     highlighted: true,
     badge: 'Most Popular',
   },
@@ -73,7 +73,7 @@ const PLANS: Plan[] = [
     monthlyPrice: null,
     annualPrice: null,
     cta: 'Contact Sales',
-    highlighted: false,
+    highlighted: true,
   },
 ];
 
@@ -379,7 +379,7 @@ function PlanCard({
 
       <button
         type="button"
-        className={`plan-matrix-card-cta ${plan.highlighted ? 'btn-gold' : 'plan-matrix-btn-outline'}`}
+        className="plan-matrix-card-cta btn-gold"
         onClick={onCta}
       >
         {plan.cta}
@@ -506,7 +506,7 @@ export default function PlanComparisonMatrix({ onNavigate }: PlanComparisonMatri
                         <span className="plan-matrix-col-name">{p.name}</span>
 
                         <span className="plan-matrix-col-cta-label">
-                          Get started <ArrowRight size={11} />
+                          Contact Sales <ArrowRight size={11} />
                         </span>
                       </button>
                     </th>
@@ -559,16 +559,16 @@ export default function PlanComparisonMatrix({ onNavigate }: PlanComparisonMatri
           ))}
         </div>
 
-        {/* ── 3 CTA buttons (one per plan) ── */}
+        {/* ── CTA button row ── */}
         <div className="plan-matrix-cta-row reveal d2">
           {PLANS.map((p) => (
             <button
               key={p.id}
               type="button"
-              className={`plan-matrix-cta-btn ${p.highlighted ? 'btn-gold' : 'plan-matrix-btn-outline'}`}
+              className="plan-matrix-cta-btn btn-gold"
               onClick={handleCtaClick}
             >
-              {p.cta}
+              Contact Sales
               <ArrowRight size={15} />
             </button>
           ))}

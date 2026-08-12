@@ -30,7 +30,7 @@ const tiers: Tier[] = [
     annualPrice: 1080,
     priceSuffix: '/mo',
     priceNote: 'billed annually',
-    cta: 'Start Free Trial',
+    cta: 'Contact Sales',
     ctaHref: 'https://cal.com/hifiveai',
     highlighted: false,
     features: [
@@ -55,7 +55,7 @@ const tiers: Tier[] = [
     annualPrice: 3420,
     priceSuffix: '/mo',
     priceNote: 'billed annually',
-    cta: 'Book a Demo',
+    cta: 'Contact Sales',
     ctaHref: 'https://cal.com/hifiveai',
     highlighted: true,
     badge: 'Most Popular',
