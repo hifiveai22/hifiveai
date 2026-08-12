@@ -316,53 +316,7 @@ const CATEGORIES: Category[] = [
       },
     ],
   },
-  {
-    id: 'security',
-    label: 'Security & Compliance',
-    icon: '⛨',
-    rows: [
-      {
-        feature: 'SOC 2',
-        cells: [
-          { kind: 'x' },
-          { kind: 'text', label: 'Type II' },
-          { kind: 'text', label: 'Type II + FedRAMP' },
-        ],
-      },
-      {
-        feature: 'ISO 27001',
-        cells: [
-          { kind: 'x' },
-          { kind: 'check' },
-          { kind: 'check' },
-        ],
-      },
-      {
-        feature: 'GDPR',
-        cells: [
-          { kind: 'check' },
-          { kind: 'check' },
-          { kind: 'check', label: '+ DPA' },
-        ],
-      },
-      {
-        feature: 'HIPAA',
-        cells: [
-          { kind: 'x' },
-          { kind: 'x' },
-          { kind: 'check' },
-        ],
-      },
-      {
-        feature: 'Custom DPA',
-        cells: [
-          { kind: 'x' },
-          { kind: 'x' },
-          { kind: 'check' },
-        ],
-      },
-    ],
-  },
+
 ];
 
 /* ── FAQ ──────────────────────────────────────────── */
